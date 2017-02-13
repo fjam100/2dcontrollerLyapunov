@@ -1,0 +1,4 @@
+[timeSamples,Xr,xc,yc,Re]=getCircle();
+model.spPos=[xc;yc];
+r0=3.5;
+plot(Xr(:,1),Xr(:,2),'o',[xe;xe(1)],[ye;ye(1)],'-.')

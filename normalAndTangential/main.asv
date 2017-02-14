@@ -1,4 +1,14 @@
-[timeSamples,Xr,xc,yc,Re]=getCircle();
+Ts=0.001;
+[timeSamples,Xr,xc,yc,Re]=getCircle(Ts);
 model.spPos=[xc;yc];
-r0=3.5;
-plot(Xr(:,1),Xr(:,2),'o',[xe;xe(1)],[ye;ye(1)],'-.')
+r0=Re-3.5;
+plot(Xr(:,1),Xr(:,2),'o');
+axis('equal');
+theta=0;
+u(1)=theta;
+u(2)=1;
+u(3)=1;
+u(4)=1.1;
+u(5)=1.1;
+a=dot([xc+r0*cos(u(1));yc+r0*sin(u(1))],[-cos(u(1));-sin(u(1))])+dot([u(2);u(3)]-[u(4);u(5)],[-cos(u(1));-sin(u(1))]);
+b=dot([u(2);u(3)]-[u(4);u(5)],[cos(u(1)+pi/2);sin(u(1)+pi/2)]);

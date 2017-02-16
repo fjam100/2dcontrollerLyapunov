@@ -1,7 +1,7 @@
 function res=tableDynamics(t,X,timeSamples,Xr,model)
 
 [~, index] = min(abs(timeSamples-t));
-U=getU(X,Xr(index,:).',model);
+U=getU2(X,Xr(index,:).',model);
 % U=[-0.1;0];
 ux=U(1);
 uy=U(2);

@@ -1,0 +1,147 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4214,        139]
+NotebookOptionsPosition[      3967,        126]
+NotebookOutlinePosition[      4315,        141]
+CellTagsIndexPosition[      4272,        138]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"theta", "=", 
+     RowBox[{"ArcTan", "[", 
+      RowBox[{
+       RowBox[{"x", "-", "xr"}], ",", 
+       RowBox[{"y", "-", "yr"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"T", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{"Sin", "[", "theta", "]"}]}], ",", " ", 
+         RowBox[{"-", 
+          RowBox[{"Cos", "[", "theta", "]"}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", "theta", "]"}], ",", " ", 
+         RowBox[{"-", 
+          RowBox[{"Sin", "[", "theta", "]"}]}]}], "}"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"K", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"kt", ",", " ", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "kn"}], "}"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"epsilonnorm", "=", 
+     RowBox[{
+      RowBox[{"Dot", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"xc", "+", 
+           RowBox[{"r0", "*", 
+            RowBox[{"Cos", "[", "theta", "]"}]}], "-", "x"}], ",", 
+          RowBox[{"yc", "+", 
+           RowBox[{"r0", "*", 
+            RowBox[{"Sin", "[", "theta", "]"}]}], "-", "y"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"Cos", "[", "theta", "]"}]}], ",", 
+          RowBox[{"-", 
+           RowBox[{"Sin", "[", "theta", "]"}]}]}], "}"}]}], "]"}], "+", 
+      RowBox[{"one", " ", "more", " ", "term"}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"epsilontgt", "=", 
+     RowBox[{"Dot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"xr", "-", "x"}], ",", 
+         RowBox[{"yr", "-", "y"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", 
+          RowBox[{"theta", "+", 
+           RowBox[{"Pi", "/", "2"}]}], "]"}], ",", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"theta", "+", 
+           RowBox[{"Pi", "/", "2"}]}], "]"}]}], "}"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"epsilon", "=", 
+     RowBox[{"{", 
+      RowBox[{"epsilontgt", ",", "epsilonnorm"}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"U", "=", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"T", ".", "K"}], ")"}], ".", "epsilon"}], ")"}]}], " ", ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"xcoeffs", "=", 
+     RowBox[{"(", 
+      RowBox[{"Coefficient", "[", 
+       RowBox[{"U", ",", "x", ",", "1"}], "]"}], ")"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ycoeffs", "=", 
+     RowBox[{"(", 
+      RowBox[{"Coefficient", "[", 
+       RowBox[{"U", ",", "y", ",", "1"}], "]"}], ")"}]}], ";"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQA2IQnTfLnuFl52vHwn/BTCD68It2ERC95He0NIheNpVN
+AURfWx6gBKJZxJ5pguWPnzQF0dtbk21BtPjWB44gWqNDNRVEc5w/lgWibaym
+1YPoOQaXmkD0xHOX20G0bqvRNBC9JcB3Foj+G7xlNYguS7x4HkSnrf5/FUQ3
+XX14E0TzHFpxF6z+YfNjEC1X3w+m30WxvADRCwsT3oDoU9Ex3K+AdPvXo8Ig
+2iyRXRpEf4rkkAHRK7MuKYNo67YlmiCay+a8LohWdqg1ANFuL5g8QPQT7kZf
+EL3vXU8emH/aoBZEr3o/vQ1EW6y26wTRMqxlvSBaw3bHBDD/xHXR10Ca7f07
+cRANABEIykg=
+  "]]
+},
+WindowSize->{759, 697},
+WindowMargins->{{Automatic, 352}, {Automatic, 15}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3405, 104, 259, "Input"]
+}
+]
+*)
+

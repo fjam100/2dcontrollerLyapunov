@@ -1,4 +1,4 @@
-function [t,Xr, xc, yc,Re]=getCircle()
+function [t,Xr, xc, yc,Re]=getCircle(model)
 y=[-183.729;-94.660;-81.150;-160.970;-304.867;-316.914]/1000;
 x=[-160.223;-222.451;-284.407;-389.623;-327.640;-277.457]/1000;
 % figure();
@@ -20,6 +20,7 @@ zeta=0.8;
 % Generate trajectory
 center=[xc;yc];
 rad=Re;
+
 [circXt, circYt]=genCircle(center,rad,Ts,thetad);
 t=(0:1:length(circXt)-1)*Ts;
 

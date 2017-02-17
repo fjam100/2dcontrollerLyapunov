@@ -14,7 +14,7 @@ xe = Re*cos(th)+xc; ye = Re*sin(th)+yc;
 % axis equal
 
 % Other parameters
-thetad=0.25;
+thetad=0.15;
 Ts=0.01;
 zeta=0.8;
 % Generate trajectory

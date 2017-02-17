@@ -22,7 +22,7 @@ dy=0;
 
 xc=model.spPos(1);
 yc=model.spPos(2);
-r0=model.spRad-0.03;
+r0=model.spRad-0.3;
 
 theta=atan2(-model.spPos(2)+y,-model.spPos(1)+x);
 
@@ -43,13 +43,14 @@ mx=model.mx;
 my=model.my;
 
 M=[mx 0; 0 my];
-Kp=[10 0; 0 1];
-Kd=[10 0; 0 1];
+Kp=[30 0; 0 0.1];
+Kd=[0.05 0; 0 0.05];
 Ks=[1 0; 0 1];
 
 epsilon=[((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-1/2).*(xr.*((-1).*y+yc)+xc.*(y+( ...
   -1).*yr)+x.*((-1).*yc+yr)),(-1).*r0+((x+(-1).*xc).^2+(y+(-1).*yc).^2).^( ...
   1/2)].';
+
 epsilond=[((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-3/2).*(xc.^2.*(xd.*y+(-1).*xrd.*y+ ...
   (-1).*xd.*yc+xrd.*yc+(-1).*xr.*yd)+(-1).*(y+(-1).*yc).^2.*(xrd.*y+xd.* ...
   yc+(-1).*xrd.*yc+(-1).*xd.*yr)+xc.^3.*(yd+(-1).*yrd)+x.^3.*yrd+x.^2.*( ...

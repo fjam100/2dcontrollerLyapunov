@@ -8,7 +8,7 @@ model.my=0.3; % Mass actuated in Y direction
 model.r=0.01; %cm to m %radius of circular part being deburred
 model.spPos=[0;0]; %spindle position
 model.spRad=0.05; %cm to m;
-model.spK=100000;
+model.spK=10000;
 model.cx=1;
 model.cy=1;
 

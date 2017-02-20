@@ -8,7 +8,7 @@ model.my=0.3; % Mass actuated in Y direction
 model.r=0.01; %cm to m %radius of circular part being deburred
 model.spPos=[0;0]; %spindle position
 model.spRad=0.05; %cm to m;
-model.spK=10000;
+model.spK=1000;
 model.cx=1;
 model.cy=1;
 
@@ -19,12 +19,19 @@ model.spPos=[xc;yc];
 % state0=[Xr(1,1);Xr(1,2);Xr(1,3);Xr(1,4)]; %x,y xd,yd
 model.r=Re-model.spRad;
 state0=[model.spPos(1)+model.r+model.spRad, model.spPos(2),0,0];
-
+T=[];
+Y=[];
 %% Dynamic simulation
-[T,Y]=ode45(@(t,y)tableDynamics(t,y,timeSamples,Xr,model),[0:0.1:timeSamples(end)],state0);
-
+for i=1:length(timeSamples)-1
+    U=getU2(state0,Xr(i+1,:),model)
+    Ucollated(i,:)=U.';
+    [Tt,Yt]=ode45(@(t,y)tableDynamics(t,y,timeSamples,Xr,model,U),[timeSamples(i),timeSamples(i+1)],state0);
+    state0=Yt(end,:);
+    T=[T;Tt(end,:)];
+    Y=[Y;Yt(end,:)];
+end
 %% Animation
-animateTable(Y,model);
+% animateTable(Y,model);
 
 %% Get plots
 F=getForce(Y,model);
@@ -38,3 +45,10 @@ hold on;
 plot(timeSamples,Xr(:,2));
 figure()
 plot(F);
+
+% %% Get input
+% for i=1:length(T)
+%     X=Y(i,:);
+%     [~, index] = min(abs(timeSamples-T(i)));
+%     U(i,:)=getU2(X,Xr(index,:),model);
+% end

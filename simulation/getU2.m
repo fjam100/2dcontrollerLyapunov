@@ -22,7 +22,7 @@ dy=0;
 
 xc=model.spPos(1);
 yc=model.spPos(2);
-r0=model.spRad-0.3;
+r0=model.spRad;
 
 theta=atan2(-model.spPos(2)+y,-model.spPos(1)+x);
 
@@ -44,7 +44,7 @@ my=model.my;
 
 M=[mx 0; 0 my];
 Kp=[20 0; 0 0.1];
-Kd=[0.05 0; 0 0.05];
+Kd=[0.5 0; 0 0.5];
 Ks=[1 0; 0 1];
 
 epsilon=[((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-1/2).*(xr.*((-1).*y+yc)+xc.*(y+( ...

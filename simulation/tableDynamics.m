@@ -10,11 +10,11 @@ xd=X(3);
 yd=X(4);
 Fspindle=[0;0];
 
-if (model.r+model.spRad)>norm(model.spPos-[x;y])
-    theta=atan2(-model.spPos(2)+y,-model.spPos(1)+x);
-    Fspindle=model.spK*((model.r+model.spRad)-norm(model.spPos-[x;y]))*...
-        [cos(theta);sin(theta)];
-end
+% if (model.r+model.spRad)>norm(model.spPos-[x;y])
+%     theta=atan2(-model.spPos(2)+y,-model.spPos(1)+x);
+%     Fspindle=model.spK*((model.r+model.spRad)-norm(model.spPos-[x;y]))*...
+%         [cos(theta);sin(theta)];
+% end
 
 F=Fspindle+[ux;uy];
 res=[X(3);X(4);(F(1)-model.cx*X(3))/model.mx; (F(2)-model.cy*X(4))/model.my];

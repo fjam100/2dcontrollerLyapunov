@@ -16,7 +16,7 @@ axis('equal');
 cSpindle.plotCircle(fig,axs);
 cMass=circleMass(y(1,1:2),model.r);
 cMass.plotCircle(fig,axs);
-for i=1:m
+for i=1:100:m
     cMass.updateState(y(i,1:2));
     cSpindle.updateState(cSpindle.centre);
     pause(0.1);

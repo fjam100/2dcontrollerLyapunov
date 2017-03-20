@@ -39,8 +39,8 @@ kn=10;
 
 cx=model.cx;
 cy=model.cy;
-mx=1;%model.mx;
-my=1;%model.my;
+mx=model.mx;
+my=model.my;
 
 M=[model.mx 0; 0 model.my];
 Kp=[5 0; 0 5];

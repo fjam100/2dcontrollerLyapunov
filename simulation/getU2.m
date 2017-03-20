@@ -39,13 +39,13 @@ kn=10;
 
 cx=model.cx;
 cy=model.cy;
-mx=model.mx;
-my=model.my;
+mx=1;%model.mx;
+my=1;%model.my;
 
-M=[mx 0; 0 my];
-Kp=[20 0; 0 0.1];
+M=[model.mx 0; 0 model.my];
+Kp=[5 0; 0 5];
 Kd=[0.5 0; 0 0.5];
-Ks=[1 0; 0 1];
+Ks=[10 0;0 2];
 
 epsilon=[((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-1/2).*(xr.*((-1).*y+yc)+xc.*(y+( ...
   -1).*yr)+x.*((-1).*yc+yr)),(-1).*r0+((x+(-1).*xc).^2+(y+(-1).*yc).^2).^( ...
@@ -106,4 +106,6 @@ rem=[mx.^(-1).*my.^(-1).*((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-5/2).*(cx.* ...
   y+(-1).*yc).^2)+mx.*((-1).*cy.*(x.^2+(-2).*x.*xc+xc.^2+(y+(-1).*yc).^2) ...
   .*(y+(-1).*yc).*yd+my.*(xd.*(y+(-1).*yc)+((-1).*x+xc).*yd).^2))].';
 
-res=inv(coeffmat)*(inv(Kd)*(-inv(M)*Ks*(Kp*epsilon+Kd*epsilond)-Kp*epsilond)-rem);
+res=inv(coeffmat)*(inv(Kd)*(-inv(eye(2))*Ks*(Kp*epsilon+Kd*epsilond)-Kp*epsilond)-rem);
+% S=Kp*epsilon+Kd*epsilond;
+% res=inv(coeffmat)*(inv(Kd)*(-pinv(S.')*Ks*abs(S)-Kp*epsilond)-rem);

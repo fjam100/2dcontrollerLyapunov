@@ -1,0 +1,268 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9106,        260]
+NotebookOptionsPosition[      8369,        232]
+NotebookOutlinePosition[      8714,        247]
+CellTagsIndexPosition[      8671,        244]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Cmat", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"cx", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "cy"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"theta", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Lmat", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Cos", "[", 
+       RowBox[{"theta", "+", 
+        RowBox[{"Pi", "/", "2"}]}], "]"}], ",", " ", 
+      RowBox[{"Sin", "[", 
+       RowBox[{"theta", "+", 
+        RowBox[{"Pi", "/", "2"}]}], "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"Cos", "[", "theta", "]"}]}], ",", " ", 
+      RowBox[{"-", 
+       RowBox[{"Sin", "[", "theta", "]"}]}]}], "}"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Simplify", "[", 
+  RowBox[{"Inverse", "[", "Lmat", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"eigVlas", "=", 
+  RowBox[{"Eigenvalues", "[", 
+   RowBox[{"Cmat", ".", 
+    RowBox[{"Inverse", "[", "Lmat", "]"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"cx", "=", "1"}], ";", " ", 
+  RowBox[{"cy", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"NegativeSemidefiniteMatrixQ", "[", 
+  RowBox[{"Cmat", ".", 
+   RowBox[{"Inverse", "[", "Lmat", "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.69730402148116*^9, 3.697304160703113*^9}, {
+  3.6973042056421804`*^9, 3.6973042362272744`*^9}, {3.697306387028936*^9, 
+  3.697306388593836*^9}, {3.697306485371621*^9, 3.697306568948472*^9}, {
+  3.6973076721385794`*^9, 3.697307674249773*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "0"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.6973040892057457`*^9, 3.6973041611778746`*^9}, {
+   3.6973042061442614`*^9, 3.6973042367940035`*^9}, 3.697306390610155*^9, {
+   3.6973065073988376`*^9, 3.6973065142200575`*^9}, {3.697306546565086*^9, 
+   3.697306569476201*^9}, 3.6973072215176735`*^9, 3.69730767482777*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.6973040892057457`*^9, 3.6973041611778746`*^9}, {
+   3.6973042061442614`*^9, 3.6973042367940035`*^9}, 3.697306390610155*^9, {
+   3.6973065073988376`*^9, 3.6973065142200575`*^9}, {3.697306546565086*^9, 
+   3.697306569476201*^9}, 3.6973072215176735`*^9, 3.6973076748297777`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "\[ImaginaryI]"}], " ", 
+    SqrtBox["cx"], " ", 
+    SqrtBox["cy"]}], ",", 
+   RowBox[{"\[ImaginaryI]", " ", 
+    SqrtBox["cx"], " ", 
+    SqrtBox["cy"]}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.6973040892057457`*^9, 3.6973041611778746`*^9}, {
+   3.6973042061442614`*^9, 3.6973042367940035`*^9}, 3.697306390610155*^9, {
+   3.6973065073988376`*^9, 3.6973065142200575`*^9}, {3.697306546565086*^9, 
+   3.697306569476201*^9}, 3.6973072215176735`*^9, 3.697307674858821*^9}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{{3.6973040892057457`*^9, 3.6973041611778746`*^9}, {
+   3.6973042061442614`*^9, 3.6973042367940035`*^9}, 3.697306390610155*^9, {
+   3.6973065073988376`*^9, 3.6973065142200575`*^9}, {3.697306546565086*^9, 
+   3.697306569476201*^9}, 3.6973072215176735`*^9, 3.697307674860826*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.6973063982412753`*^9, 3.697306430689559*^9}, {
+  3.6973064610615616`*^9, 3.697306461648672*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "FindMaxValue","nrnum",
+   "\"The function value \\!\\(\\*RowBox[{FractionBox[\\\"1\\\", \\\"2\\\"], \
+\\\" \\\", RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"0.8414709848078965`\\\", \\\
+\" \\\", \\\"cx\\\"}], \\\"+\\\", RowBox[{\\\"0.8414709848078965`\\\", \\\" \
+\\\", \\\"cy\\\"}], \\\"+\\\", SqrtBox[RowBox[{SuperscriptBox[RowBox[{\\\"(\\\
+\", RowBox[{RowBox[{\\\"0.8414709848078965`\\\", \\\" \\\", \\\"cx\\\"}], \
+\\\"+\\\", RowBox[{\\\"0.8414709848078965`\\\", \\\" \\\", \\\"cy\\\"}]}], \\\
+\")\\\"}], \\\"2\\\"], \\\"-\\\", RowBox[{\\\"4\\\", \\\" \\\", \\\"cx\\\", \
+\\\" \\\", \\\"cy\\\"}]}]]}], \\\")\\\"}]}]\\) is not a real number at \\!\\(\
+\\*RowBox[{\\\"{\\\", \\\"theta\\\", \\\"}\\\"}]\\) = \
+\\!\\(\\*RowBox[{\\\"{\\\", \\\"1.`\\\", \\\"}\\\"}]\\).\"",2,156,2,
+   32275781663033950423,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.697306432336686*^9}],
+
+Cell[BoxData[
+ RowBox[{"FindMaxValue", "[", 
+  RowBox[{
+   RowBox[{"eigVlas", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+   ",", "theta"}], "]"}]], "Output",
+ CellChangeTimes->{{3.6973064039204483`*^9, 3.697306432339695*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Modify controller to add damping in order to prove stability??
+
+Since cx and cy are positive, the first terms of the eigenvalues are \
+negative. Further, it can be proven that the value of the second term is \
+either imaginary or necessarily less than the first term. Thus, the \
+eigenvalues are both negative.
+\
+\>", "Text",
+ CellChangeTimes->{{3.6973048394420424`*^9, 3.6973048667088184`*^9}, 
+   3.6973049034569035`*^9, {3.697305049755741*^9, 3.6973051371887655`*^9}, {
+   3.697307788434738*^9, 3.6973078171817226`*^9}}],
+
+Cell[BoxData[{
+ StyleBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "4"}], "*", "cx", "*", "cy", " ", "and", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"cx", "*", 
+        RowBox[{"Sin", "[", "theta", "]"}]}], "+", 
+       RowBox[{"cy", "*", 
+        RowBox[{"Sin", "[", "theta", "]"}]}]}], ")"}], "^", "2"}], " ", 
+    "have", " ", "opposite", " ", 
+    RowBox[{"signs", ".", " ", "Thus"}]}], ",", " ", 
+   RowBox[{
+   "if", " ", "the", " ", "terms", " ", "inside", " ", "the", " ", "square", 
+    " ", "root", " ", "are", " ", "positive"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    SqrtBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "4"}], " ", "cx", " ", "cy"}], "+", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"cx", " ", 
+          RowBox[{"Sin", "[", "theta", "]"}]}], "+", 
+         RowBox[{"cy", " ", 
+          RowBox[{"Sin", "[", "theta", "]"}]}]}], ")"}], "2"]}]], "<", 
+    SqrtBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"cx", " ", 
+         RowBox[{"Sin", "[", "theta", "]"}]}], "+", 
+        RowBox[{"cy", " ", 
+         RowBox[{"Sin", "[", "theta", "]"}]}]}], ")"}], "2"]]}]}], 
+  "Text"], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"Or", "  ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "4"}], " ", "cx", " ", "cy"}], "+", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"cx", " ", 
+          RowBox[{"Sin", "[", "theta", "]"}]}], "+", 
+         RowBox[{"cy", " ", 
+          RowBox[{"Sin", "[", "theta", "]"}]}]}], ")"}], "2"]}]]}], " ", "<", 
+   "  ", 
+   RowBox[{
+    RowBox[{"cx", " ", 
+     RowBox[{"Sin", "[", "theta", "]"}]}], "+", 
+    RowBox[{"cy", " ", 
+     RowBox[{"Sin", "[", "theta", "]"}]}]}]}], 
+  "Text"], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6973051663918915`*^9, 3.6973053274319286`*^9}, {
+  3.697305417023967*^9, 3.697305426743222*^9}, {3.697305480775489*^9, 
+  3.697305527887309*^9}, {3.697306235792078*^9, 3.697306236762576*^9}}],
+
+Cell["Consequently, both the eigenvalues ", "Text",
+ CellChangeTimes->{{3.6973055387431064`*^9, 3.697305548449066*^9}}],
+
+Cell["", "Text",
+ CellChangeTimes->{{3.6973048394420424`*^9, 3.6973048667088184`*^9}, 
+   3.6973049034569035`*^9, {3.697305049755741*^9, 3.6973051315657845`*^9}}]
+},
+WindowSize->{759, 697},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1687, 46, 164, "Input"],
+Cell[2270, 70, 487, 11, 30, "Output"],
+Cell[2760, 83, 490, 11, 30, "Output"],
+Cell[3253, 96, 541, 13, 35, "Output"],
+Cell[3797, 111, 327, 4, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4161, 120, 145, 2, 30, "Input"],
+Cell[4309, 124, 923, 15, 71, "Message"],
+Cell[5235, 141, 239, 5, 30, "Output"]
+}, Open  ]],
+Cell[5489, 149, 533, 11, 125, "Text"],
+Cell[6025, 162, 2053, 61, 137, "Input"],
+Cell[8081, 225, 119, 1, 30, "Text"],
+Cell[8203, 228, 162, 2, 30, "Text"]
+}
+]
+*)
+

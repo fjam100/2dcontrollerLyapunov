@@ -24,7 +24,7 @@ Y=[];
 %% Dynamic simulation
 for i=1:length(timeSamples)-1
     U=getU2(state0,Xr(i+1,:),model);
-    [MCollated{i}, coeffmatCollated{i}, KdCollated{i},KsCollated{i}, SsdotCollated{i}]=getSSdot(state0,Xr(i+1,:),model);
+    Ssdot(i)=getSSdot(state0,Xr(i+1,:),model);
     Ucollated(i,:)=U.';
     [Tt,Yt]=ode45(@(t,y)tableDynamics(t,y,timeSamples,Xr,model,U),[timeSamples(i),timeSamples(i+1)],state0);
     state0=Yt(end,:);
@@ -50,7 +50,6 @@ figure();
 hold on;
 plot(T,Y(:,2));
 hold on;
-
 plot(timeSamples,Xr(:,2));
 figure()
 plot(F);
@@ -78,10 +77,4 @@ for i=1:length(T)
   -1).*yr)+x.*((-1).*yc+yr)),(-1).*r0+((x+(-1).*xc).^2+(y+(-1).*yc).^2).^( ...
   1/2)];
 
-end
-
-
-for i=1:length(MCollated)
-   temp=MCollated{i}*inv(coeffmatCollated{i})*inv(KdCollated{i})*KsCollated{i};
-   Keffective(i)=temp(2);
 end

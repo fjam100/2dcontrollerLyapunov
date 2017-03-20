@@ -1,4 +1,4 @@
-function [M, coeffmat, Kd,Ks, res]=getSSdot(X,Xr,model)
+function res=getSSdot(X,Xr,model)
 %% Function to give input based on:
 % theta = ArcTan[x - xc, y - yc];
 % epsilontgt = 

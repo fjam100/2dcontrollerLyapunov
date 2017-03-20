@@ -1,4 +1,4 @@
-function [M, coeffmat, Kd,Ks, res]=getSSdot(X,Xr,model)
+function [M, coeffmat, Kd, Ks, res, Keff]=getSSdot(X,Xr,model)
 %% Function to give input based on:
 % theta = ArcTan[x - xc, y - yc];
 % epsilontgt = 
@@ -110,3 +110,5 @@ rem=[mx.^(-1).*my.^(-1).*((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-5/2).*(cx.* ...
 S=Kp*epsilon+Kd*epsilond;
 delta=eye(2)-[model.mx 0; 0 model.my]*inv([mx 0; 0 my]);
 res=S.'*(-Ks*S-Kd*coeffmat*delta*inv(coeffmat)*Ks*S+Kd*coeffmat*delta*inv(coeffmat)*rem);
+U=inv(coeffmat)*(inv(Kd)*(-inv(eye(2))*Ks*(Kp*epsilon+Kd*epsilond)-Kp*epsilond)-rem);
+Keff=dot(U,[-cos(theta);-sin(theta)])/epsilonn;

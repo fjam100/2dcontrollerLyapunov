@@ -10,18 +10,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23852,        674]
-NotebookOptionsPosition[     23328,        653]
-NotebookOutlinePosition[     23676,        668]
-CellTagsIndexPosition[     23633,        665]
+NotebookDataLength[     16215,        472]
+NotebookOptionsPosition[     15893,        457]
+NotebookOutlinePosition[     16239,        472]
+CellTagsIndexPosition[     16196,        469]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[""], "Input",
  CellChangeTimes->{{3.6962114951310015`*^9, 3.6962114967482777`*^9}}],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
@@ -240,8 +238,14 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"rem", "=", 
    RowBox[{"rem", "-", 
-    RowBox[{"ycoeffs", "*", "y"}]}]}], 
-  ";"}], "\[IndentingNewLine]", "xcoeffs", "\[IndentingNewLine]"}], "Input",
+    RowBox[{"ycoeffs", "*", "y"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Dimensions", "[", "xcoeffs", "]"}], "\[IndentingNewLine]", 
+     RowBox[{"Simplify", "[", "xcoeffs", "]"}]}], " ", "//", "MatrixForm"}], 
+   "\[IndentingNewLine]", "*)"}]}]}], "Input",
  CellChangeTimes->{{3.6962116729855604`*^9, 3.6962117325831246`*^9}, {
    3.6962137982516217`*^9, 3.6962138047278056`*^9}, {3.69627200826003*^9, 
    3.6962720255770593`*^9}, {3.6968180320256844`*^9, 3.6968180333243885`*^9}, 
@@ -270,258 +274,14 @@ Cell[BoxData[{
    3.698102797426073*^9}, 3.6981029052906504`*^9, {3.69897006864165*^9, 
    3.698970094413003*^9}, {3.699030422830267*^9, 3.6990304236253796`*^9}, {
    3.6990304579476347`*^9, 3.6990304945539656`*^9}, {3.6990306359479003`*^9, 
-   3.699030686834197*^9}}],
-
-Cell[BoxData[
- TemplateBox[{
-  "NotebookDirectory","nosv",
-   "\"The notebook \
-\\!\\(\\*TemplateBox[List[FrontEndObject[LinkObject[\\\"zr7c2_shm\\\", 3, \
-1]], 18, \\\"FrontEndObject[LinkObject[\\\\\\\"zr7c2_shm\\\\\\\", 3, 1]]\\\", \
-\\\"18\\\", \\\"\\\\\\\"Untitled-1\\\\\\\"\\\"], \
-\\\"NotebookObjectUnsaved\\\"]\\) is not saved.\"",2,2,1,32287356860807897986,
-   "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.699030687746622*^9}],
-
-Cell[BoxData[
- TemplateBox[{
-  "SetDirectory","fstr",
-   "\"File specification \\!\\(\\*RowBox[{\\\"$Failed\\\"}]\\) is not a \
-string of one or more characters.\"",2,2,2,32287356860807897986,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.6990306877476244`*^9}],
-
-Cell[BoxData[
- TemplateBox[{
-  "Get","noopen",
-   "\"Cannot open \
-\\!\\(\\*RowBox[{\\\"\\\\\\\"ToMatlab.m\\\\\\\"\\\"}]\\).\"",2,3,3,
-   32287356860807897986,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.699030687761669*^9}],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-   RowBox[{
-    RowBox[{"(", 
-     RowBox[{
-      RowBox[{"2", " ", "cx", " ", "my", " ", 
-       SuperscriptBox["xc", "3"], " ", "xd", " ", 
-       RowBox[{"(", 
-        RowBox[{"y", "-", "yc"}], ")"}]}], "+", 
-      RowBox[{"cx", " ", "my", " ", 
-       SuperscriptBox["xc", "2"], " ", "xd", " ", 
-       RowBox[{"(", 
-        RowBox[{"xc", "-", "xr"}], ")"}], " ", 
-       RowBox[{"(", 
-        RowBox[{"y", "-", "yc"}], ")"}]}], "-", 
-      RowBox[{"2", " ", "cx", " ", "my", " ", 
-       SuperscriptBox["xc", "2"], " ", "xd", " ", "xr", " ", 
-       RowBox[{"(", 
-        RowBox[{"y", "-", "yc"}], ")"}]}], "+", 
-      RowBox[{"cx", " ", "my", " ", "xd", " ", 
-       RowBox[{"(", 
-        RowBox[{"xc", "-", "xr"}], ")"}], " ", 
-       SuperscriptBox[
-        RowBox[{"(", 
-         RowBox[{"y", "-", "yc"}], ")"}], "3"]}], "+", 
-      RowBox[{"3", " ", "cy", " ", "mx", " ", 
-       SuperscriptBox["xc", "4"], " ", "yd"}], "+", 
-      RowBox[{"cy", " ", "mx", " ", 
-       SuperscriptBox["xc", "3"], " ", 
-       RowBox[{"(", 
-        RowBox[{"xc", "-", "xr"}], ")"}], " ", "yd"}], "-", 
-      RowBox[{"3", " ", "cy", " ", "mx", " ", 
-       SuperscriptBox["xc", "3"], " ", "xr", " ", "yd"}], "+", 
-      RowBox[{"cy", " ", "mx", " ", 
-       SuperscriptBox["xc", "2"], " ", 
-       SuperscriptBox[
-        RowBox[{"(", 
-         RowBox[{"y", "-", "yc"}], ")"}], "2"], " ", "yd"}], "+", 
-      RowBox[{"cy", " ", "mx", " ", "xc", " ", 
-       RowBox[{"(", 
-        RowBox[{"xc", "-", "xr"}], ")"}], " ", 
-       SuperscriptBox[
-        RowBox[{"(", 
-         RowBox[{"y", "-", "yc"}], ")"}], "2"], " ", "yd"}], "-", 
-      RowBox[{"cy", " ", "mx", " ", "xc", " ", "xr", " ", 
-       SuperscriptBox[
-        RowBox[{"(", 
-         RowBox[{"y", "-", "yc"}], ")"}], "2"], " ", "yd"}], "-", 
-      RowBox[{"2", " ", "cx", " ", "my", " ", "xc", " ", "xd", " ", 
-       SuperscriptBox[
-        RowBox[{"(", 
-         RowBox[{"y", "-", "yc"}], ")"}], "2"], " ", 
-       RowBox[{"(", 
-        RowBox[{"yc", "-", "yr"}], ")"}]}], "-", 
-      RowBox[{"3", " ", "cy", " ", "mx", " ", 
-       SuperscriptBox["xc", "2"], " ", 
-       RowBox[{"(", 
-        RowBox[{"y", "-", "yc"}], ")"}], " ", "yd", " ", 
-       RowBox[{"(", 
-        RowBox[{"yc", "-", "yr"}], ")"}]}], "-", 
-      RowBox[{"cy", " ", "mx", " ", 
-       SuperscriptBox[
-        RowBox[{"(", 
-         RowBox[{"y", "-", "yc"}], ")"}], "3"], " ", "yd", " ", 
-       RowBox[{"(", 
-        RowBox[{"yc", "-", "yr"}], ")"}]}], "+", 
-      RowBox[{"mx", " ", "my", " ", 
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{
-          SuperscriptBox["xc", "3"], " ", 
-          RowBox[{"(", 
-           RowBox[{
-            RowBox[{"4", " ", "xrdd", " ", 
-             RowBox[{"(", 
-              RowBox[{"y", "-", "yc"}], ")"}]}], "-", 
-            RowBox[{"6", " ", "xd", " ", "yd"}], "+", 
-            RowBox[{"8", " ", "xrd", " ", "yd"}]}], ")"}]}], "+", 
-         RowBox[{"2", " ", "xc", " ", 
-          RowBox[{"(", 
-           RowBox[{"y", "-", "yc"}], ")"}], " ", 
-          RowBox[{"(", 
-           RowBox[{
-            RowBox[{"2", " ", 
-             SuperscriptBox["xd", "2"], " ", "xr"}], "+", 
-            RowBox[{"2", " ", "xrdd", " ", 
-             SuperscriptBox[
-              RowBox[{"(", 
-               RowBox[{"y", "-", "yc"}], ")"}], "2"]}], "+", 
-            RowBox[{"yd", " ", 
-             RowBox[{"(", 
-              RowBox[{
-               RowBox[{"2", " ", "xrd", " ", 
-                RowBox[{"(", 
-                 RowBox[{"y", "-", "yc"}], ")"}]}], "-", 
-               RowBox[{"3", " ", "xr", " ", "yd"}]}], ")"}]}], "+", 
-            RowBox[{"2", " ", "xd", " ", 
-             RowBox[{"(", 
-              RowBox[{
-               RowBox[{
-                RowBox[{"-", "2"}], " ", "yd", " ", "yr"}], "+", 
-               RowBox[{"y", " ", 
-                RowBox[{"(", 
-                 RowBox[{"yd", "-", "yrd"}], ")"}]}], "+", 
-               RowBox[{"yc", " ", 
-                RowBox[{"(", 
-                 RowBox[{"yd", "+", "yrd"}], ")"}]}]}], ")"}]}]}], ")"}]}], 
-         "+", 
-         RowBox[{"5", " ", 
-          SuperscriptBox["xc", "4"], " ", "yrdd"}], "+", 
-         RowBox[{
-          SuperscriptBox[
-           RowBox[{"(", 
-            RowBox[{"y", "-", "yc"}], ")"}], "2"], " ", 
-          RowBox[{"(", 
-           RowBox[{
-            RowBox[{"2", " ", "xd", " ", 
-             RowBox[{"(", 
-              RowBox[{
-               RowBox[{"xrd", " ", 
-                RowBox[{"(", 
-                 RowBox[{"y", "-", "yc"}], ")"}]}], "-", 
-               RowBox[{"2", " ", "xr", " ", "yd"}]}], ")"}]}], "+", 
-            RowBox[{"3", " ", 
-             SuperscriptBox["xd", "2"], " ", 
-             RowBox[{"(", 
-              RowBox[{"yc", "-", "yr"}], ")"}]}], "+", 
-            RowBox[{"2", " ", 
-             SuperscriptBox["yd", "2"], " ", "yr"}], "-", 
-            RowBox[{"2", " ", "y", " ", "yd", " ", "yrd"}], "+", 
-            RowBox[{
-             SuperscriptBox["y", "2"], " ", "yrdd"}], "+", 
-            RowBox[{
-             SuperscriptBox["yc", "2"], " ", "yrdd"}], "-", 
-            RowBox[{"2", " ", "yc", " ", 
-             RowBox[{"(", 
-              RowBox[{
-               SuperscriptBox["yd", "2"], "-", 
-               RowBox[{"yd", " ", "yrd"}], "+", 
-               RowBox[{"y", " ", "yrdd"}]}], ")"}]}]}], ")"}]}], "+", 
-         RowBox[{
-          SuperscriptBox["xc", "2"], " ", 
-          RowBox[{"(", 
-           RowBox[{
-            RowBox[{
-             RowBox[{"-", "4"}], " ", 
-             SuperscriptBox["xd", "2"], " ", 
-             RowBox[{"(", 
-              RowBox[{"y", "-", "yc"}], ")"}]}], "-", 
-            RowBox[{"3", " ", "yc", " ", 
-             SuperscriptBox["yd", "2"]}], "+", 
-            RowBox[{"6", " ", "xd", " ", 
-             RowBox[{"(", 
-              RowBox[{
-               RowBox[{"xrd", " ", 
-                RowBox[{"(", 
-                 RowBox[{"y", "-", "yc"}], ")"}]}], "+", 
-               RowBox[{"xr", " ", "yd"}]}], ")"}]}], "-", 
-            RowBox[{"3", " ", 
-             SuperscriptBox["yd", "2"], " ", "yr"}], "+", 
-            RowBox[{"6", " ", "yc", " ", "yd", " ", "yrd"}], "+", 
-            RowBox[{"6", " ", 
-             SuperscriptBox["y", "2"], " ", "yrdd"}], "+", 
-            RowBox[{"6", " ", 
-             SuperscriptBox["yc", "2"], " ", "yrdd"}], "+", 
-            RowBox[{"6", " ", "y", " ", 
-             RowBox[{"(", 
-              RowBox[{
-               SuperscriptBox["yd", "2"], "-", 
-               RowBox[{"yd", " ", "yrd"}], "-", 
-               RowBox[{"2", " ", "yc", " ", "yrdd"}]}], ")"}]}]}], ")"}]}]}], 
-        ")"}]}]}], ")"}], "/", 
-    RowBox[{"(", 
-     RowBox[{"mx", " ", "my", " ", 
-      SuperscriptBox[
-       RowBox[{"(", 
-        RowBox[{
-         SuperscriptBox[
-          RowBox[{"(", 
-           RowBox[{"x", "-", "xc"}], ")"}], "2"], "+", 
-         SuperscriptBox[
-          RowBox[{"(", 
-           RowBox[{"y", "-", "yc"}], ")"}], "2"]}], ")"}], 
-       RowBox[{"5", "/", "2"}]]}], ")"}]}], ",", 
-   FractionBox[
-    RowBox[{
-     RowBox[{
-      RowBox[{"-", "3"}], " ", "cx", " ", "my", " ", 
-      SuperscriptBox["xc", "2"], " ", "xd"}], "-", 
-     RowBox[{"cx", " ", "my", " ", "xd", " ", 
-      SuperscriptBox[
-       RowBox[{"(", 
-        RowBox[{"y", "-", "yc"}], ")"}], "2"]}], "+", 
-     RowBox[{"2", " ", "cy", " ", "mx", " ", "xc", " ", 
-      RowBox[{"(", 
-       RowBox[{"y", "-", "yc"}], ")"}], " ", "yd"}], "-", 
-     RowBox[{"2", " ", "mx", " ", "my", " ", "xd", " ", 
-      RowBox[{"(", 
-       RowBox[{"y", "-", "yc"}], ")"}], " ", "yd"}], "-", 
-     RowBox[{"2", " ", "mx", " ", "my", " ", "xc", " ", 
-      SuperscriptBox["yd", "2"]}]}], 
-    RowBox[{"mx", " ", "my", " ", 
-     SuperscriptBox[
-      RowBox[{"(", 
-       RowBox[{
-        SuperscriptBox[
-         RowBox[{"(", 
-          RowBox[{"x", "-", "xc"}], ")"}], "2"], "+", 
-        SuperscriptBox[
-         RowBox[{"(", 
-          RowBox[{"y", "-", "yc"}], ")"}], "2"]}], ")"}], 
-      RowBox[{"3", "/", "2"}]]}]]}], "}"}]], "Output",
- CellChangeTimes->{3.6990306911837597`*^9}]
-}, Open  ]],
+   3.699030686834197*^9}, {3.699031087990272*^9, 3.699031153357102*^9}, 
+   3.699039412314603*^9}],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"f", " ", "=", " ", 
-    RowBox[{"OpenWrite", "[", "\"\<file2.m\>\"", "]"}]}], ";"}], 
+    RowBox[{"OpenWrite", "[", "\"\<fileStiffness.m\>\"", "]"}]}], ";"}], 
   " "}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"WriteString", "[", 
@@ -550,7 +310,7 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"WriteMatlab", "[", 
    RowBox[{
-    RowBox[{"B", "[", 
+    RowBox[{"epsilond", "[", 
      RowBox[{"[", "1", "]"}], "]"}], ",", "f"}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -560,8 +320,8 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"WriteMatlab", "[", 
    RowBox[{
-    RowBox[{"B", "[", 
-     RowBox[{"[", "1", "]"}], "]"}], ",", "f"}], "]"}], 
+    RowBox[{"epsilond", "[", 
+     RowBox[{"[", "2", "]"}], "]"}], ",", "f"}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"WriteString", "[", 
@@ -609,6 +369,48 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"WriteString", "[", 
+   RowBox[{"f", ",", "\"\<xcoeffs(1,1)=\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"WriteMatlab", "[", 
+   RowBox[{
+    RowBox[{"xcoeffs", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], ",", "f"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"WriteString", "[", 
+   RowBox[{"f", ",", "\"\<xcoeffs(2,1)=\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WriteMatlab", "[", 
+    RowBox[{
+     RowBox[{"xcoeffs", "[", 
+      RowBox[{"[", "2", "]"}], "]"}], ",", "f"}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"WriteString", "[", 
+   RowBox[{"f", ",", "\"\<ycoeffs(1,1)=\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"WriteMatlab", "[", 
+   RowBox[{
+    RowBox[{"ycoeffs", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], ",", "f"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"WriteString", "[", 
+   RowBox[{"f", ",", "\"\<ycoeffs(2,1)=\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WriteMatlab", "[", 
+    RowBox[{
+     RowBox[{"ycoeffs", "[", 
+      RowBox[{"[", "2", "]"}], "]"}], ",", "f"}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"WriteString", "[", 
    RowBox[{"f", ",", "\"\<rem(1,1)=\>\""}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -649,10 +451,12 @@ Cell[BoxData[{
    3.6966189036165543`*^9, 3.6966189039029408`*^9}, {3.696712607640256*^9, 
    3.696712772888706*^9}, {3.6967128076234*^9, 3.6967128091105156`*^9}, {
    3.6967128990872145`*^9, 3.696713017691042*^9}, {3.6967276046079817`*^9, 
-   3.69672761909489*^9}}]
+   3.69672761909489*^9}, {3.6990310587515373`*^9, 3.6990310608902245`*^9}, {
+   3.699031183063051*^9, 3.699031281427287*^9}, {3.699031334515469*^9, 
+   3.6990313526125712`*^9}}]
 },
 WindowSize->{759, 697},
-WindowMargins->{{93, Automatic}, {-31, Automatic}},
+WindowMargins->{{93, Automatic}, {0, Automatic}},
 FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -668,17 +472,9 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 96, 1, 30, "Input"],
-Cell[CellGroupData[{
-Cell[679, 25, 8722, 247, 639, "Input"],
-Cell[9404, 274, 461, 10, 42, "Message"],
-Cell[9868, 286, 286, 6, 21, "Message"],
-Cell[10157, 294, 251, 7, 21, "Message"],
-Cell[10411, 303, 8129, 213, 272, "Output"]
-}, Open  ]],
-Cell[18555, 519, 4769, 132, 468, "Input"]
+Cell[657, 23, 8998, 254, 658, "Input"],
+Cell[9658, 279, 6231, 176, 658, "Input"]
 }
 ]
 *)
-
-(* End of internal cache information *)
 

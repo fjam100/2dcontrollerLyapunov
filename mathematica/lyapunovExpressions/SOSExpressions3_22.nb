@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     14376,        406]
-NotebookOptionsPosition[     13973,        390]
-NotebookOutlinePosition[     14310,        405]
-CellTagsIndexPosition[     14267,        402]
+NotebookDataLength[     15606,        438]
+NotebookOptionsPosition[     15203,        422]
+NotebookOutlinePosition[     15540,        437]
+CellTagsIndexPosition[     15497,        434]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24,6 +24,8 @@ Cell[BoxData[{
   RowBox[{"SetDirectory", "[", 
    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"<<", "ToMatlab.m"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"cx", "=", "1"}], ";", " ", 
   RowBox[{"cy", "=", "1"}], ";"}], "\[IndentingNewLine]", 
@@ -346,8 +348,8 @@ Cell[BoxData[{
    3.699232073740307*^9}, {3.699232138954905*^9, 3.699232214364748*^9}, {
    3.699233047622658*^9, 3.6992331597237043`*^9}, {3.69923322346876*^9, 
    3.699233257802472*^9}, {3.699233293217765*^9, 3.699233297849556*^9}, {
-   3.6992336210685883`*^9, 
-   3.699233644955988*^9}},ExpressionUUID->"f201bb66-089a-4c09-985b-\
+   3.6992336210685883`*^9, 3.699233644955988*^9}, {3.6992926766553802`*^9, 
+   3.69929267698288*^9}},ExpressionUUID->"f201bb66-089a-4c09-985b-\
 fc687c7319e6"],
 
 Cell[BoxData[
@@ -381,15 +383,45 @@ Cell[BoxData[
          RowBox[{"{", 
           RowBox[{
            RowBox[{"{", "xd", "}"}], ",", 
-           RowBox[{"{", "yd", "}"}]}], "}"}]}]}], ")"}]}]}], 
-    ";"}]}]}]], "Input",
+           RowBox[{"{", "yd", "}"}]}], "}"}]}]}], ")"}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Sin", "[", "theta", "]"}], "^=", "s"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Cos", "[", "theta", "]"}], "^=", "c"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"writeMat", "=", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"Xddact", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   
+   RowBox[{
+    RowBox[{"f", " ", "=", " ", 
+     RowBox[{"OpenWrite", "[", "\"\<tempFile.m\>\"", "]"}]}], ";"}], " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"WriteString", "[", 
+     RowBox[{"f", ",", "\"\<xdd=\>\""}], "]"}], ";"}], "\[IndentingNewLine]", 
+   
+   RowBox[{
+    RowBox[{"WriteMatlab", "[", 
+     RowBox[{"writeMat", ",", "f"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Close", "[", "f", "]"}], ";"}]}]}]], "Input",
  CellChangeTimes->{{3.699233576205958*^9, 3.699233604284067*^9}, {
-  3.699233670267062*^9, 
-  3.6992337395466013`*^9}},ExpressionUUID->"995de2b7-55ef-45de-b570-\
+   3.699233670267062*^9, 3.6992337395466013`*^9}, 3.69929168714954*^9, {
+   3.699292386435186*^9, 3.699292445005763*^9}, {3.699292553088973*^9, 
+   3.699292564279891*^9}, {3.699292701534666*^9, 3.699292749301442*^9}, {
+   3.699292798957117*^9, 
+   3.6992928507080193`*^9}},ExpressionUUID->"995de2b7-55ef-45de-b570-\
 e73932b74ee7"]
 },
 WindowSize->{759, 697},
-WindowMargins->{{Automatic, 938}, {Automatic, 595}},
+WindowMargins->{{Automatic, 655}, {524, Automatic}},
 FrontEndVersion->"11.1 for Linux x86 (64-bit) (March 13, 2017)",
 StyleDefinitions->"Default.nb"
 ]
@@ -404,9 +436,9 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 12327, 330, 887, "Input", "ExpressionUUID" -> \
+Cell[558, 20, 12447, 332, 910, "Input", "ExpressionUUID" -> \
 "f201bb66-089a-4c09-985b-fc687c7319e6"],
-Cell[12888, 352, 1081, 36, 102, "Input", "ExpressionUUID" -> \
+Cell[13008, 354, 2191, 66, 320, "Input", "ExpressionUUID" -> \
 "995de2b7-55ef-45de-b570-e73932b74ee7"]
 }
 ]

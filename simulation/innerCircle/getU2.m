@@ -1,0 +1,65 @@
+function res=getU2(X,Xr,model)
+%% Function to give input based on:
+% theta = ArcTan[x - xc, y - yc];
+% epsilontgt = 
+%   Dot[{xr - x, yr - y}, {Cos[theta + Pi/2], Sin[theta + Pi/2]}];
+% epsilonnorm = 
+%   Dot[{xc + r0*Cos[theta] - x,  yc + r0*Sin[theta] - y}, {-Cos[theta], -Sin[theta]}];
+
+x=X(1);
+y=X(2);
+xd=X(3);
+yd=X(4);
+xr=Xr(1);
+yr=Xr(2);
+xrd=Xr(3);
+yrd=Xr(4);
+xrdd=Xr(5);
+yrdd=Xr(6);
+
+dx=0;
+dy=0;
+
+xc=model.spPos(1);
+yc=model.spPos(2);
+r0=model.spRad;
+
+theta=atan2(-model.spPos(2)+y,-model.spPos(1)+x);
+
+
+epsilonn =  dot(-[xc+r0*cos(theta);yc+r0*sin(theta)]+[x;y],[-cos(theta); -sin(theta)])+dot(-[xr;yr]+[x;y],[-cos(theta); -sin(theta)]);%+...
+%             dot([xc+r0*cos(theta);yc+r0*sin(theta)]-[x;y],[-cos(theta); -sin(theta)]);
+epsilont =  dot(-[xr;yr]+[x;y],[cos(theta+pi/2);sin(theta+pi/2)]);
+% [xr;yr]
+% [x;y]
+T=[-sin(theta) -cos(theta); cos(theta) -sin(theta)];
+kt=1000;
+kn=10;
+
+
+cx=model.cx;
+cy=model.cy;
+mx=model.mx;
+my=model.my;
+
+M=[model.mx 0; 0 model.my];
+Kp=[5 0; 0 5];
+Kd=[0.5 0; 0 0.5];
+Ks=[10 0;0 2];
+
+thetad=xd.*((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-1).*((-1).*y+yc)+(x+(-1).*xc).* ...
+  ((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-1).*yd;
+T=[(-1).*sin(theta),cos(theta);(-1).*cos(theta),(-1).*sin(theta)];
+Td=[(-1).*thetad.*cos(theta),(-1).*thetad.*sin(theta);thetad.*sin(theta),( ...
+  -1).*thetad.*cos(theta)];
+Tdd=[(-1).*thetadd.*cos(theta)+thetad.^2.*sin(theta),(-1).*thetad.^2.*cos( ...
+  theta)+(-1).*thetadd.*sin(theta);thetad.^2.*cos(theta)+thetadd.*sin( ...
+  theta),(-1).*thetadd.*cos(theta)+thetad.^2.*sin(theta)];
+epsilon=[((-1).*y+yr).*cos(theta)+(x+(-1).*xr).*sin(theta),(x+(-1).*xr).*cos( ...
+  theta)+(y+(-1).*yr).*sin(theta)];
+epsilond=[thetad.*(x+(-1).*xr).*cos(theta)+((-1).*yd+yrd).*cos(theta)+(xd+(-1).* ...
+  xrd).*sin(theta)+(-1).*thetad.*((-1).*y+yr).*sin(theta),(xd+(-1).*xrd).* ...
+  cos(theta)+thetad.*(y+(-1).*yr).*cos(theta)+(-1).*thetad.*(x+(-1).*xr).* ...
+  sin(theta)+(yd+(-1).*yrd).*sin(theta)];
+
+res=-M*inv(T)*(-inv(Kd)*(Ks*(Kp*epsilon + Kd*epsilond) + Kp*epsilond)-2*Td*([xrd;yrd] - [xd;yd]) - Tdd*([xr;yr] - [x;y])) - M*[xrdd;yrdd] + C*[xd;yd];

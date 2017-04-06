@@ -19,17 +19,21 @@ model.spPos=[xc;yc];
 % state0=[Xr(1,1);Xr(1,2);Xr(1,3);Xr(1,4)]; %x,y xd,yd
 model.r=Re-model.spRad;
 state0=[model.spPos(1)+model.r+model.spRad, model.spPos(2),0,0];
-T=[];
-Y=[];
+T=[0];
+Y=[state0];
+xdd=0;
+ydd=0;
 %% Dynamic simulation
-for i=1:length(timeSamples)-1
-    U=getU2(state0,Xr(i+1,:),model);
-    [MCollated{i}, coeffmatCollated{i}, KdCollated{i},KsCollated{i}, SsdotCollated{i}, KeffCollated{i}]=getSSdot(state0,Xr(i+1,:),model);
+for i=1:length(timeSamples)-10000*2.5
+    U=getU2(state0,Xr(i+1,:),model,xdd,ydd);
+    [MCollated{i}, coeffmatCollated{i}, KdCollated{i},KsCollated{i}, SsdotCollated{i}, KeffCollated(i)]=getSSdot(state0,Xr(i+1,:),model);
     Ucollated(i,:)=U.';
     [Tt,Yt]=ode45(@(t,y)tableDynamics(t,y,timeSamples,Xr,model,U),[timeSamples(i),timeSamples(i+1)],state0);
     state0=Yt(end,:);
     T=[T;Tt(end,:)];
     Y=[Y;Yt(end,:)];
+    xdd=(Y(end,3)-Y(end-1,3))/(T(end)-T(end-1));
+    ydd=(Y(end,4)-Y(end-1,4))/(T(end)-T(end-1));
 end
 %% Animation
 % animateTable(Y,model);
@@ -80,11 +84,11 @@ for i=1:length(T)
 
 end
 % 
-% 
-% for i=1:length(MCollated)
-%    temp=MCollated{i}*inv(coeffmatCollated{i})*inv(KdCollated{i})*KsCollated{i};
-%    Keffective(i)=temp(2);
-% end
+
+for i=1:length(MCollated)
+    temp=KeffCollated{i};
+   Keffective(i)=temp(1);
+end
 % 
 % 
 % for i=1:length(MCollated)

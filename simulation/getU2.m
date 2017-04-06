@@ -106,6 +106,6 @@ rem=[mx.^(-1).*my.^(-1).*((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-5/2).*(cx.* ...
   y+(-1).*yc).^2)+mx.*((-1).*cy.*(x.^2+(-2).*x.*xc+xc.^2+(y+(-1).*yc).^2) ...
   .*(y+(-1).*yc).*yd+my.*(xd.*(y+(-1).*yc)+((-1).*x+xc).*yd).^2))].';
 
-res=inv(coeffmat)*(inv(Kd)*(-inv(eye(2))*Ks*(Kp*epsilon+Kd*epsilond)-Kp*epsilond)-rem);
+res=inv(coeffmat)*(inv(Kd)*(-inv(M)*Ks*(Kp*epsilon+Kd*epsilond)-Kp*epsilond)-rem);
 % S=Kp*epsilon+Kd*epsilond;
 % res=inv(coeffmat)*(inv(Kd)*(-pinv(S.')*Ks*abs(S)-Kp*epsilond)-rem);

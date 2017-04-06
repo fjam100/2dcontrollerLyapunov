@@ -19,7 +19,7 @@ Ts=0.001;
 zeta=0.8;
 % Generate trajectory
 center=[xc;yc];
-rad=Re;
+rad=0.01;
 
 [circXt, circYt]=genCircle(center,rad,Ts,thetad);
 t=(0:1:length(circXt)-1)*Ts;

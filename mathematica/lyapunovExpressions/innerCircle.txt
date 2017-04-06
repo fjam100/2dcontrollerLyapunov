@@ -1,0 +1,14 @@
+epsilond=(xrd ((xc - xr)^2 + (yc - yr)^2) (-y + yr) - (-xd + 
+      xrd) ((xc - xr)^2 + (yc - yr)^2) (-yc + yr) - (-x + 
+      xr) ((xc - xr)^2 + (yc - yr)^2) yrd + (-xc + 
+      xr) ((xc - xr)^2 + (yc - yr)^2) (-yd + yrd) + (xc - xr) (y - 
+      yr) (xc xrd - xr xrd + (yc - yr) yrd) + (x - xr) (yc - 
+      yr) (-xc xrd + xr xrd + (-yc + yr) yrd))/((xc - xr)^2 + (yc - 
+     yr)^2)^(3/
+  2), (-2 (-x + xr) xrd ((xc - xr)^2 + (yc - yr)^2) - 
+   2 (-xc + xr) (-xd + xrd) ((xc - xr)^2 + (yc - yr)^2) - 
+   2 ((xc - xr)^2 + (yc - yr)^2) (-y + yr) yrd - 
+   2 ((xc - xr)^2 + (yc - yr)^2) (-yc + yr) (-yd + yrd) - 
+   2 (x - xr) (-xc + xr) (-xc xrd + xr xrd + (-yc + yr) yrd) - 
+   2 (y - yr) (-yc + yr) (-xc xrd + 
+      xr xrd + (-yc + yr) yrd))/(2 ((xc - xr)^2 + (yc - yr)^2)^(3/2))

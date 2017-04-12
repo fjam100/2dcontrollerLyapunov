@@ -24,7 +24,7 @@ Y=[state0];
 xdd=0;
 ydd=0;
 %% Dynamic simulation
-for i=1:length(timeSamples)-10000*2.5
+for i=1:length(timeSamples)-1
     U=getU2(state0,Xr(i+1,:),model,xdd,ydd);
     [MCollated{i}, coeffmatCollated{i}, KdCollated{i},KsCollated{i}, SsdotCollated{i}, KeffCollated(i)]=getSSdot(state0,Xr(i+1,:),model);
     Ucollated(i,:)=U.';
@@ -84,11 +84,12 @@ for i=1:length(T)
 
 end
 % 
+% 
+% for i=1:length(MCollated)
+%     temp=KeffCollated{i};
+%    Keffective(i)=temp(1);
+% end
 
-for i=1:length(MCollated)
-    temp=KeffCollated{i};
-   Keffective(i)=temp(1);
-end
 % 
 % 
 % for i=1:length(MCollated)

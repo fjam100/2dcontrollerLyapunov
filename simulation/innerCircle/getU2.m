@@ -225,11 +225,11 @@ rem=[mx.^(-1).*my.^(-1).*((xc+(-1).*xr).^2+(yc+(-1).*yr).^2).^(-5/2).*(cx.* ...
   4.*xrd.*yc.*yrd+2.*xd.*yr.*yrd+x.*(3.*xrd.^2+(-2).*yrd.^2+(-1).*yc.* ...
   yrdd+yr.*yrdd))))))].';
 
-% 
-% Knorm=200;
-% Kpy=(Knorm+dot((M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[0;1],[-cos(theta);-sin(theta)]))*Kd(2,2)/(Ks(2,2)*(mx*cos(theta)^2+my*sin(theta)^2));
-% Ktgt=1000;
-% Kpx=(Ktgt+dot((M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[1;0],[cos(theta+pi/2);sin(theta+pi/2)]))*Kd(1,1)/(Ks(1,1)*(my*cos(theta)^2+mx*sin(theta)^2));
-% Kp=[Kpx,0;0,Kpy];
+
+Knorm=200;
+Kpy=(Knorm+dot((M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[0;1],[-cos(theta);-sin(theta)]))*Kd(2,2)/(Ks(2,2)*(mx*cos(theta)^2+my*sin(theta)^2));
+Ktgt=1000;
+Kpx=(Ktgt+dot((M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[1;0],[cos(theta+pi/2);sin(theta+pi/2)]))*Kd(1,1)/(Ks(1,1)*(my*cos(theta)^2+mx*sin(theta)^2));
+Kp=[Kpx,0;0,Kpy];
 
 res=inv(coeffmat)*(-inv(Kd)*(Ks*(Kp*epsilon+Kd*epsilond))-rem);

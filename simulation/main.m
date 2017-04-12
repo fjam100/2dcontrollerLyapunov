@@ -19,12 +19,12 @@ model.spPos=[xc;yc];
 % state0=[Xr(1,1);Xr(1,2);Xr(1,3);Xr(1,4)]; %x,y xd,yd
 model.r=Re-model.spRad;
 state0=[model.spPos(1)+model.r+model.spRad, model.spPos(2),0,0];
-T=[];
-Y=[];
+T=[0];
+Y=[state0];
 %% Dynamic simulation
 for i=1:length(timeSamples)-1
     U=getU2(state0,Xr(i+1,:),model);
-    [MCollated{i}, coeffmatCollated{i}, KdCollated{i},KsCollated{i}, SsdotCollated{i}, KeffCollated{i}]=getSSdot(state0,Xr(i+1,:),model);
+%     [MCollated{i}, coeffmatCollated{i}, KdCollated{i},KsCollated{i}, SsdotCollated{i}, KeffCollated{i}]=getSSdot(state0,Xr(i+1,:),model);
     Ucollated(i,:)=U.';
     [Tt,Yt]=ode45(@(t,y)tableDynamics(t,y,timeSamples,Xr,model,U),[timeSamples(i),timeSamples(i+1)],state0);
     state0=Yt(end,:);

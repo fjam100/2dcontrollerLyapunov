@@ -2,7 +2,7 @@
 % Control law is provided in a separate function and is called within the
 % ode45 function
 %%%%%%%%%Ensure get circle has the correct radius%%%%%%%%%%%%%%%%%%%%
-
+clear all;
 model.mx=1; %Mass actuated in X dorection
 model.my=0.3; % Mass actuated in Y direction
 model.r=0.01; %cm to m %radius of circular part being deburred
@@ -21,15 +21,46 @@ model.r=Re-model.spRad;
 state0=[model.spPos(1)+model.r+model.spRad, model.spPos(2),0,0];
 T=[0];
 Y=[state0];
+
+Ts=0.001;
+M=[1 0; 0 0.3];
+C=[1 0; 0 1];
+kalman.A=[zeros(2,2), eye(2), zeros(2,2); zeros(2,2) -M\C, zeros(2,2); zeros(2,6)];
+kalman.Ad=(eye(size(kalman.A))+kalman.A*Ts);
+kalman.B=[zeros(2,2); inv(M); zeros(2,2)];
+kalman.Bd=Ts*kalman.B;
+
+kalman.X(:,1)=[state0.'; 0; 0];
+kalman.P=eye(6)*0.001;
+kalman.Q=eye(6)*0.000000000001;
+kalman.Q(5,5)=1;
+kalman.Q(6,6)=1;
+kalman.R=0.0000000000001*eye(4);
+kalman.H=[eye(4), zeros(4,2)];
 %% Dynamic simulation
 for i=1:length(timeSamples)-1
+    i
     U=getU2(state0,Xr(i+1,:),model);
+    F=norm(model.spK*((model.r+model.spRad)-norm(model.spPos-[state0(1);state0(2)])))
+    % Kalman model update
+    kalman.Xprior=kalman.Ad*kalman.X(:,i)+kalman.Bd*(U+kalman.X(5:6,i));
+
+    kalman.Pprior=kalman.Ad*kalman.P*kalman.Ad.'+kalman.Q;
+   
 %     [MCollated{i}, coeffmatCollated{i}, KdCollated{i},KsCollated{i}, SsdotCollated{i}, KeffCollated{i}]=getSSdot(state0,Xr(i+1,:),model);
     Ucollated(i,:)=U.';
     [Tt,Yt]=ode45(@(t,y)tableDynamics(t,y,timeSamples,Xr,model,U),[timeSamples(i),timeSamples(i+1)],state0);
     state0=Yt(end,:);
     T=[T;Tt(end,:)];
     Y=[Y;Yt(end,:)];
+    
+    zk=[Yt(end,:).']
+    kalman.Xprior
+    %Kalman measurement update
+    kalman.K=kalman.Pprior*kalman.H.'*inv(kalman.H*kalman.Pprior*kalman.H.'+kalman.R);
+    kalman.X(:,i+1)=kalman.Xprior+kalman.K*(zk-kalman.H*kalman.Xprior);
+    kalman.X(:,i+1)
+    kalman.P=(eye(size(kalman.P))-kalman.K*kalman.H)*kalman.Pprior;
 end
 %% Animation
 % animateTable(Y,model);

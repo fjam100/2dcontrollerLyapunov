@@ -32,9 +32,9 @@ YwithLQR=state0;
 %% Dynamic simulation
 for i=1:length(timeSamples)-1
     U=Ucollated(i,:).'+K*(Y(i,:).'-YwithLQR(end,:).');
-    i
-    ([Y(i,1:2).';0;0]-YwithLQR(end,:).')
-    K*([Y(i,1:2).';0;0]-YwithLQR(end,:).')
+%     i
+%     ([Y(i,1:2).';0;0]-YwithLQR(end,:).')
+%     K*([Y(i,1:2).';0;0]-YwithLQR(end,:).')
 %     [MCollated{i}, coeffmatCollated{i}, KdCollated{i},KsCollated{i}, SsdotCollated{i}, KeffCollated{i}]=getSSdot(state0,Xr(i+1,:),model);
     [Tt,Yt]=ode45(@(t,y)tableDynamics(t,y,timeSamples,Y(i,:).',model,U),[timeSamples(i),timeSamples(i+1)],state0);
     state0=Yt(end,:);

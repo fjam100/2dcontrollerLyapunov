@@ -43,6 +43,7 @@ mx=model.mx;
 my=model.my;
 
 M=[mx 0; 0 my];
+C=[cx 0; 0 cy];
 Kp=[5 0; 0 5];
 Kd=[0.5 0; 0 0.5];
 Ks=[10 0;0 2];
@@ -83,6 +84,13 @@ Tdd=[((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-1/2).*(y+(-1).*yc).*(xd.*((x+(-1) ...
   .*xc).^2+(y+(-1).*yc).^2).^(-2).*yd.*(2.*(x+(-1).*xc).*xd+2.*(y+(-1).* ...
   yc).*yd)+((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-1).*((-1).*y+yc).*xdd ...
   +(x+(-1).*xc).*((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-1).*ydd)];
+
+thetad=((yc-y)*xd+(x-xc)*yd)/((x-xc)^2+(y-yc)^2);
+Tinv=[ -sin(theta), -cos(theta); ... 
+  cos(theta), -sin(theta)];
+Tinvd=[-cos(theta) sin(theta); ...
+    -sin(theta) -cos(theta)]*thetad;
+Tinvdd=[sin(theta) cos(theta); -cos(theta) sin(theta)]*thetad^2;
 
 
 epsilon=[((xc+(-1).*xr).^2+(yc+(-1).*yr).^2).^(-1/2).*(xr.*((-1).*y+yc)+xc.*(y+( ...
@@ -226,10 +234,14 @@ rem=[mx.^(-1).*my.^(-1).*((xc+(-1).*xr).^2+(yc+(-1).*yr).^2).^(-5/2).*(cx.* ...
   yrdd+yr.*yrdd))))))].';
 
 
-Knorm=200;
-Kpy=(Knorm+dot((M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[0;1],[-cos(theta);-sin(theta)]))*Kd(2,2)/(Ks(2,2)*(mx*cos(theta)^2+my*sin(theta)^2));
+Knorm=40;
+Kpy=(Knorm+dot((M*Tinvdd+C*Tinvd+M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[0;1],[-cos(theta);-sin(theta)]))*Kd(2,2)/(Ks(2,2)*(mx*cos(theta)^2+my*sin(theta)^2));
 Ktgt=1000;
-Kpx=(Ktgt+dot((M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[1;0],[cos(theta+pi/2);sin(theta+pi/2)]))*Kd(1,1)/(Ks(1,1)*(my*cos(theta)^2+mx*sin(theta)^2));
+Kpx=(Ktgt+dot((M*Tinvdd+C*Tinvd+M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[1;0],[cos(theta+pi/2);sin(theta+pi/2)]))*Kd(1,1)/(Ks(1,1)*(my*cos(theta)^2+mx*sin(theta)^2));
 Kp=[Kpx,0;0,Kpy];
+
+% 4/18
+% Keff=M*Tinvdd+C*Tinvd-(Kd*T/M)\(-Ks*Kp-Kp*Td/T-Kp*T/Td-Kd*Tinvdd*Tinv-2*Kd*Td*Tinvd)
+
 
 res=inv(coeffmat)*(-inv(Kd)*(Ks*(Kp*epsilon+Kd*epsilond))-rem);

@@ -55,10 +55,8 @@ for i=1:length(timeSamples)-1
     kalman.K=kalman.P*kalman.H.'/(kalman.H*kalman.P*kalman.H.'+kalman.R);
     kalman.X=kalman.X+kalman.K*(Yt(end,:).'-kalman.H*kalman.X);
     kalman.P=(eye(6)-kalman.K*kalman.H)*kalman.P;
-    i
-    kalman.X
-    Yt(end,:).'
-    F=norm(model.spK*((model.r+model.spRad)-norm(model.spPos-[state0(1);state0(2)])))*[-cos(theta);-sin(theta)]
+
+%     F=norm(model.spK*((model.r+model.spRad)-norm(model.spPos-[state0(1);state0(2)])))*[-cos(theta);-sin(theta)]
 end
 %% Animation
 % animateTable(Y,model);

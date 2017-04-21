@@ -120,4 +120,18 @@ rem=[mx.^(-1).*my.^(-1).*((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-5/2).*(cx.* ...
 % Kpx=(Ktgt+dot((M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[1;0],[cos(theta+pi/2);sin(theta+pi/2)]))*Kd(1,1)/(Ks(1,1)*(my*cos(theta)^2+mx*sin(theta)^2));
 % Kp=[Kpx,0;0,Kpy];
 
+% % % rep1
+% Keff=T*M*Tinvdd+T*C*Tinvd-T*M*Tinv*(-Kd\Ks*Kp+2*Td*Tinv*Td*Tinv-Tdd*Tinv);
+% %rep 2
+% Keff = T*M*Tinvdd+T*C*Tinvd-T*inv(Kd*T*inv(M))*(-Ks*Kp-Kp*Td*Tinv-Kp*T*Tinvd-Kd*Tdd*Tinv-2*Kd*Td*Tinvd)
+% Keffdes=Keff;
+% Keffdes(1,1)=1000;
+% % Keffdes(1,2)=0;
+% % Keffdes(2,1)=0;
+% Keffdes(2,2)=200;
+% Kp=(-Kd\Ks)\((-T*M*Tinv)\(Keffdes-T*M*Tinvdd+T*C*Tinvd)+Tdd*Tinv-2*Td*Tinv*Td*Tinv)
+
+Keff=T*M*Tinvdd+T*C*Tinvd-T*(-M*Tinv*(-Kd\Ks*Kp-2*M*Tinv*Td*Tinv*Td*Tinv+M*Tinv*Tdd*Tinv-C*Tinv*Td*Tinv))
+Keffdes=[1000 0; 0 200];
+Kp=inv(M*Tinv*inv(Kd)*Ks)*(-Tinv*(Keffdes-T*M*Tinvdd-T*C*Tinvd)+2*M*Tinv*Td*Tinv*Td*Tinv-M*Tinv*Tdd*Tinv+C*Tinv*Td*Tinv);
 res=inv(coeffmat)*(inv(Kd)*(-inv(M)*Ks*(Kp*epsilon+Kd*epsilond)-Kp*epsilond)-rem);

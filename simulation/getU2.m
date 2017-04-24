@@ -1,4 +1,4 @@
-function res=getU2(X,Xr,model)
+function [res, Knormal, epsilonn, epsilont]=getU2(X,Xr,model)
 %% Function to give input based on:
 % theta = ArcTan[x - xc, y - yc];
 % epsilontgt = 
@@ -39,10 +39,10 @@ epsilont =  dot(-[xr;yr]+[x;y],[cos(theta+pi/2);sin(theta+pi/2)]);
 
 T=[-sin(theta) cos(theta); -cos(theta) -sin(theta)];
 Td=[-cos(theta) -sin(theta); sin(theta) -cos(theta)]*thetad;
-Tdd=[sin(theta) -cos(theta); cos(theta) sin(theta)]*thetad^2;
+Tdd=[sin(theta) -cos(theta); cos(theta) sin(theta)]*thetad^2*0;
 Tinv=[-sin(theta) -cos(theta); cos(theta) -sin(theta)];
 Tinvd=[-cos(theta) sin(theta); -sin(theta) -cos(theta)]*thetad;
-Tinvdd=[sin(theta) cos(theta); -cos(theta) sin(theta)]*thetad^2;
+Tinvdd=[sin(theta) cos(theta); -cos(theta) sin(theta)]*thetad^2*0;
 
 cx=model.cx;
 cy=model.cy;
@@ -114,17 +114,37 @@ rem=[mx.^(-1).*my.^(-1).*((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-5/2).*(cx.* ...
   y+(-1).*yc).^2)+mx.*((-1).*cy.*(x.^2+(-2).*x.*xc+xc.^2+(y+(-1).*yc).^2) ...
   .*(y+(-1).*yc).*yd+my.*(xd.*(y+(-1).*yc)+((-1).*x+xc).*yd).^2))].';
 
+
+% % % rep1
+Keff=T*M*Tinvdd+T*C*Tinvd+T*M*Tinv*(-Kd\Ks*Kp+2*Td*Tinv*Td*Tinv-Tdd*Tinv)+T*C*Tinv*Td*Tinv;
+temp=Keff*[0;1];
+Knormal=temp(2);
+% Keffdes=[1000 0; 0 200];
+% Kp=(-Kd\Ks)\((T*M*Tinv)\(Keffdes-T*M*Tinvdd-T*C*Tinvd-T*C*Tinv*Td*Tinv)-2*Td*Tinv*Td*Tinv-Tdd*Tinv);
+% Keffnew=T*M*Tinvdd+T*C*Tinvd+T*M*Tinv*(-Kd\Ks*Kp+2*Td*Tinv*Td*Tinv-Tdd*Tinv)
+% % Using rep1
 % Knorm=200;
 % Kpy=(Knorm+dot((M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[0;1],[-cos(theta);-sin(theta)]))*Kd(2,2)/(Ks(2,2)*(mx*cos(theta)^2+my*sin(theta)^2));
 % Ktgt=1000;
 % Kpx=(Ktgt+dot((M*inv(T)*(2*Td*inv(T)*Td*inv(T)))*[1;0],[cos(theta+pi/2);sin(theta+pi/2)]))*Kd(1,1)/(Ks(1,1)*(my*cos(theta)^2+mx*sin(theta)^2));
 % Kp=[Kpx,0;0,Kpy];
 
-% % % rep1
-Keff=T*M*Tinvdd+T*C*Tinvd+T*M*Tinv*(-Kd\Ks*Kp+2*Td*Tinv*Td*Tinv-Tdd*Tinv)+T*C*Tinv*Td*Tinv
-Keffdes=[1000 0; 0 200];
-Kp=(-Kd\Ks)\((T*M*Tinv)\(Keffdes-T*M*Tinvdd-T*C*Tinvd-T*C*Tinv*Td*Tinv)-2*Td*Tinv*Td*Tinv-Tdd*Tinv);
-Keffnew=T*M*Tinvdd+T*C*Tinvd+T*M*Tinv*(-Kd\Ks*Kp+2*Td*Tinv*Td*Tinv-Tdd*Tinv)
+% Correct stiffness modulation
+% Knorm=20;
+% M*Tinvdd
+% C*Tinvd
+% 2*M*Tinv*Td*Tinv*Td*Tinv
+% -M*Tinv*Tdd*Tinv
+% +C*Tinv*Td*Tinv
+% 
+% M*Tinvdd+C*Tinvd+2*M*Tinv*Td*Tinv*Td*Tinv-M*Tinv*Tdd*Tinv+C*Tinv*Td*Tinv
+% 
+% dot((M*Tinvdd+C*Tinvd+2*M*Tinv*Td*Tinv*Td*Tinv-M*Tinv*Tdd*Tinv+C*Tinv*Td*Tinv)*[0;1],[-cos(theta);-sin(theta)])
+% Kpy=(Knorm-dot((M*Tinvdd+C*Tinvd+2*M*Tinv*Td*Tinv*Td*Tinv-M*Tinv*Tdd*Tinv+C*Tinv*Td*Tinv)*[0;1],[-cos(theta);-sin(theta)]))*-Kd(2,2)/(Ks(2,2)*(mx*cos(theta)^2+my*sin(theta)^2));
+% Ktgt=100;
+% Kpx=(Ktgt+dot((M*Tinvdd+C*Tinvd+2*M*Tinv*Td*Tinv*Td*Tinv-M*Tinv*Tdd*Tinv+C*Tinv*Td*Tinv)*[0;1],[cos(theta+pi/2);sin(theta+pi/2)]))*-Kd(1,1)/(Ks(1,1)*(my*cos(theta)^2+mx*sin(theta)^2));
+% Kp=[Kpx,0;0,Kpy]
+
 
 % %rep 2
 % Keff=T*M*Tinvdd+T*C*Tinvd-T*(-M*Tinv*(-Kd\Ks*Kp-2*M*Tinv*Td*Tinv*Td*Tinv+M*Tinv*Tdd*Tinv-C*Tinv*Td*Tinv));

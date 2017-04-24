@@ -39,7 +39,7 @@ kalman.R=eye(4)*0.000001;
 kalman.X=[state0.'; 0; 0];
 %% Dynamic simulation
 for i=1:length(timeSamples)-1
-    U=getU2(state0,Xr(i+1,:),model);
+    [U, Knormal(i), epsilonn(i), epsilont(i)]=getU2(state0,Xr(i+1,:),model);
     theta=atan2(-model.spPos(2)+Y(end,2),-model.spPos(1)+Y(end,1));
     % Kalman model update
     kalman.X=kalman.Ad*kalman.X+kalman.Bd*(U);

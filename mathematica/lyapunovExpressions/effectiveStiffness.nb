@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4889,        167]
-NotebookOptionsPosition[      4500,        149]
-NotebookOutlinePosition[      4878,        165]
-CellTagsIndexPosition[      4835,        162]
+NotebookDataLength[      5094,        174]
+NotebookOptionsPosition[      4705,        156]
+NotebookOutlinePosition[      5083,        172]
+CellTagsIndexPosition[      5040,        169]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -83,7 +83,8 @@ Cell[BoxData[{
    RowBox[{
     RowBox[{"M", ".", 
      RowBox[{"Inverse", "[", "T", "]"}], ".", 
-     RowBox[{"Inverse", "[", "Kd", "]"}], ".", "Ks", ".", "Kp", ".", 
+     RowBox[{"Inverse", "[", 
+      RowBox[{"-", "Kd"}], "]"}], ".", "Ks", ".", "Kp", ".", 
      RowBox[{"{", 
       RowBox[{"0", ",", "1"}], "}"}]}], ",", " ", 
     RowBox[{"{", 
@@ -98,7 +99,8 @@ Cell[BoxData[{
    RowBox[{
     RowBox[{"M", ".", 
      RowBox[{"Inverse", "[", "T", "]"}], ".", 
-     RowBox[{"Inverse", "[", "Kd", "]"}], ".", "Ks", ".", "Kp", ".", 
+     RowBox[{"Inverse", "[", 
+      RowBox[{"-", "Kd"}], "]"}], ".", "Ks", ".", "Kp", ".", 
      RowBox[{"{", 
       RowBox[{"1", ",", "0"}], "}"}]}], ",", " ", 
     RowBox[{"{", 
@@ -112,43 +114,48 @@ Cell[BoxData[{
  CellChangeTimes->{{3.7004038286895213`*^9, 3.7004038506344643`*^9}, {
   3.700403990560486*^9, 3.70040418728043*^9}, {3.7004042687682586`*^9, 
   3.70040426970525*^9}, {3.7004338160508957`*^9, 3.700433818581173*^9}, {
-  3.7004338657674727`*^9, 3.700433927020768*^9}}],
+  3.7004338657674727`*^9, 3.700433927020768*^9}, {3.701797287308753*^9, 
+  3.701797291108867*^9}}],
 
 Cell[BoxData[
- FractionBox[
-  RowBox[{"kpy", " ", "ksy", " ", 
-   RowBox[{"(", 
-    RowBox[{
-     RowBox[{"mx", " ", 
-      SuperscriptBox[
-       RowBox[{"Cos", "[", "theta", "]"}], "2"]}], "+", 
-     RowBox[{"my", " ", 
-      SuperscriptBox[
-       RowBox[{"Sin", "[", "theta", "]"}], "2"]}]}], ")"}]}], 
-  "kdy"]], "Output",
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"kpy", " ", "ksy", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"mx", " ", 
+       SuperscriptBox[
+        RowBox[{"Cos", "[", "theta", "]"}], "2"]}], "+", 
+      RowBox[{"my", " ", 
+       SuperscriptBox[
+        RowBox[{"Sin", "[", "theta", "]"}], "2"]}]}], ")"}]}], 
+   "kdy"]}]], "Output",
  CellChangeTimes->{
   3.7004041923891277`*^9, {3.700404270900854*^9, 3.700404280096431*^9}, 
-   3.700404320511639*^9, {3.7004338921555963`*^9, 3.7004339274877043`*^9}}],
+   3.700404320511639*^9, {3.7004338921555963`*^9, 3.7004339274877043`*^9}, 
+   3.701797292218503*^9}],
 
 Cell[BoxData[
- FractionBox[
-  RowBox[{"kpx", " ", "ksx", " ", 
-   RowBox[{"(", 
-    RowBox[{
-     RowBox[{"my", " ", 
-      SuperscriptBox[
-       RowBox[{"Cos", "[", "theta", "]"}], "2"]}], "+", 
-     RowBox[{"mx", " ", 
-      SuperscriptBox[
-       RowBox[{"Sin", "[", "theta", "]"}], "2"]}]}], ")"}]}], 
-  "kdx"]], "Output",
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"kpx", " ", "ksx", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"my", " ", 
+       SuperscriptBox[
+        RowBox[{"Cos", "[", "theta", "]"}], "2"]}], "+", 
+      RowBox[{"mx", " ", 
+       SuperscriptBox[
+        RowBox[{"Sin", "[", "theta", "]"}], "2"]}]}], ")"}]}], 
+   "kdx"]}]], "Output",
  CellChangeTimes->{
   3.7004041923891277`*^9, {3.700404270900854*^9, 3.700404280096431*^9}, 
-   3.700404320511639*^9, {3.7004338921555963`*^9, 3.700433927490711*^9}}]
+   3.700404320511639*^9, {3.7004338921555963`*^9, 3.7004339274877043`*^9}, 
+   3.7017972922380686`*^9}]
 }, Open  ]]
 },
 WindowSize->{759, 697},
-WindowMargins->{{Automatic, 267}, {24, Automatic}},
+WindowMargins->{{Automatic, 160}, {15, Automatic}},
 Magnification:>1.1 Inherited,
 FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
 StyleDefinitions->"Default.nb"
@@ -165,9 +172,9 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 2908, 92, 254, "Input"],
-Cell[3491, 116, 496, 14, 51, "Output"],
-Cell[3990, 132, 494, 14, 81, "Output"]
+Cell[580, 22, 3001, 95, 254, "Input"],
+Cell[3584, 119, 550, 16, 51, "Output"],
+Cell[4137, 137, 552, 16, 48, "Output"]
 }, Open  ]]
 }
 ]

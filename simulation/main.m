@@ -80,7 +80,34 @@ hold on;
 
 plot(timeSamples,Xr(:,2));
 figure()
-plot(F);
+plot(timeSamples,F);
+title('Deburring force');
+grid on;
+hXLabel = xlabel('Time (s)');
+hYLabel = ylabel('Force (N)');
+set([hXLabel, hYLabel], 'fontSize', 10);
+set([gca], ...
+    'FontName','Times New Roman' );
+set([gca], ...
+    'FontSize', 10);
+%figure size
+set(gca, ...
+    'Units', 'centimeters');
+set(gca, ...
+    'OuterPosition', [0 0 15 10]);
+set(gcf, ...
+    'Units', 'centimeter');
+set(gcf, ...
+    'Position', [8 10 15 10]);
+set(gcf, ...
+    'PaperUnits','centimeters');
+set(gcf, ...
+    'PaperSize',[15 10]);
+set(gcf, ...
+    'PaperPosition',[0 0 15 10]);
+set(gcf, 'PaperPositionMode', 'auto');
+print -depsc2 -painters forcePlot.eps
+
 figure();
 plot(Y(:,1),Y(:,2),'o')
 hold on;
@@ -118,4 +145,66 @@ end
 %    temp=MCollated{i}*inv(coeffmatCollated{i})*inv(KdCollated{i})*KsCollated{i}*[0;1];
 %    Keffective(i)=temp(2);
 % end
+Knormal=[Knormal, Knormal(end)];
+figure()
+plot(timeSamples,Knormal);
+title('Effective Stiffness');
+grid on;
+ylim([-22,0]);
+hXLabel = xlabel('Time (s)');
+hYLabel = ylabel('Stiffness (N/m)');
+set([hXLabel, hYLabel], 'fontSize', 10);
+set([gca], ...
+    'FontName','Times New Roman' );
+set([gca], ...
+    'FontSize', 10);
+%figure size
+set(gca, ...
+    'Units', 'centimeters');
+set(gca, ...
+    'OuterPosition', [0 0 15 10]);
+set(gcf, ...
+    'Units', 'centimeter');
+set(gcf, ...
+    'Position', [8 10 15 10]);
+set(gcf, ...
+    'PaperUnits','centimeters');
+set(gcf, ...
+    'PaperSize',[15 10]);
+set(gcf, ...
+    'PaperPosition',[0 0 15 10]);
+set(gcf, 'PaperPositionMode', 'auto');
+print -depsc2 -painters effectiveStiffness.eps
+
+%% Display epsilon errors
+epsilonn=[epsilonn, epsilonn(end)];
+figure()
+plot(timeSamples,epsilonn);
+title('Normal Error');
+grid on;
+ylim([-0.1,0]);
+hXLabel = xlabel('Time (s)');
+hYLabel = ylabel('Error (m)');
+set([hXLabel, hYLabel], 'fontSize', 10);
+set([gca], ...
+    'FontName','Times New Roman' );
+set([gca], ...
+    'FontSize', 10);
+%figure size
+set(gca, ...
+    'Units', 'centimeters');
+set(gca, ...
+    'OuterPosition', [0 0 15 10]);
+set(gcf, ...
+    'Units', 'centimeter');
+set(gcf, ...
+    'Position', [8 10 15 10]);
+set(gcf, ...
+    'PaperUnits','centimeters');
+set(gcf, ...
+    'PaperSize',[15 10]);
+set(gcf, ...
+    'PaperPosition',[0 0 15 10]);
+set(gcf, 'PaperPositionMode', 'auto');
+print -depsc2 -painters normalError.eps
 

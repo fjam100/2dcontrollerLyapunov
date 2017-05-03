@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     10580,        324]
-NotebookOptionsPosition[     10148,        304]
-NotebookOutlinePosition[     10495,        319]
-CellTagsIndexPosition[     10452,        316]
+NotebookDataLength[     11566,        350]
+NotebookOptionsPosition[     11132,        330]
+NotebookOutlinePosition[     11478,        345]
+CellTagsIndexPosition[     11435,        342]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -116,9 +116,9 @@ Cell[BoxData[{
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"Kpxx", ",", "0"}], "}"}], ",", 
+      RowBox[{"Kpxx", ",", "Kpxy"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "Kpyy"}], "}"}]}], "}"}]}], 
+      RowBox[{"Kpyx", ",", "Kpyy"}], "}"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Ks", "=", 
@@ -134,9 +134,9 @@ Cell[BoxData[{
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"Kdxx", ",", "0"}], "}"}], ",", 
+      RowBox[{"Kdxx", ",", "Kdxy"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "Kdyy"}], "}"}]}], "}"}]}], 
+      RowBox[{"Kdyx", ",", "Kdyy"}], "}"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -213,21 +213,46 @@ Cell[BoxData[{
    3.7017897351018815`*^9}, {3.701789773741967*^9, 3.701789797023156*^9}, {
    3.7017901807794533`*^9, 3.701790194440525*^9}, {3.7017902263734617`*^9, 
    3.701790261065909*^9}, {3.7017927069122467`*^9, 3.7017927483235445`*^9}, 
-   3.70179372606192*^9, {3.7017941656848316`*^9, 3.7017941821237006`*^9}}],
+   3.70179372606192*^9, {3.7017941656848316`*^9, 3.7017941821237006`*^9}, {
+   3.7025166587061577`*^9, 3.7025166718729224`*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"-", 
-      FractionBox[
-       RowBox[{"Kpxx", " ", "Ksxx"}], "Kdxx"]}], ",", "0"}], "}"}], ",", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"Kdyy", " ", "Kpxx", " ", "Ksxx"}], "-", 
+       RowBox[{"Kdxy", " ", "Kpyx", " ", "Ksyy"}]}], 
+      RowBox[{
+       RowBox[{"Kdxy", " ", "Kdyx"}], "-", 
+       RowBox[{"Kdxx", " ", "Kdyy"}]}]], ",", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"Kdyy", " ", "Kpxy", " ", "Ksxx"}], "-", 
+       RowBox[{"Kdxy", " ", "Kpyy", " ", "Ksyy"}]}], 
+      RowBox[{
+       RowBox[{"Kdxy", " ", "Kdyx"}], "-", 
+       RowBox[{"Kdxx", " ", "Kdyy"}]}]]}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"0", ",", 
-     RowBox[{"-", 
-      FractionBox[
-       RowBox[{"Kpyy", " ", "Ksyy"}], "Kdyy"]}]}], "}"}]}], "}"}]], "Output",
+    RowBox[{
+     FractionBox[
+      RowBox[{
+       RowBox[{"Kdyx", " ", "Kpxx", " ", "Ksxx"}], "-", 
+       RowBox[{"Kdxx", " ", "Kpyx", " ", "Ksyy"}]}], 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "Kdxy"}], " ", "Kdyx"}], "+", 
+       RowBox[{"Kdxx", " ", "Kdyy"}]}]], ",", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"Kdyx", " ", "Kpxy", " ", "Ksxx"}], "-", 
+       RowBox[{"Kdxx", " ", "Kpyy", " ", "Ksyy"}]}], 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "Kdxy"}], " ", "Kdyx"}], "+", 
+       RowBox[{"Kdxx", " ", "Kdyy"}]}]]}], "}"}]}], "}"}]], "Output",
  CellChangeTimes->{
   3.7016174328344774`*^9, 3.7016175122480707`*^9, 3.701617544982381*^9, {
    3.701617583854869*^9, 3.7016176093821707`*^9}, {3.701735160881729*^9, 
@@ -235,7 +260,8 @@ Cell[BoxData[
    3.701737210880994*^9, {3.7017897229393806`*^9, 3.7017897366820765`*^9}, 
    3.7017897880437813`*^9, 3.701790201541658*^9, {3.701790238189162*^9, 
    3.701790263215723*^9}, {3.7017927381871924`*^9, 3.7017927503560295`*^9}, 
-   3.7017937292600174`*^9, 3.701794184712511*^9}]
+   3.7017937292600174`*^9, 3.701794184712511*^9, 3.702123657553199*^9, {
+   3.7025166548317647`*^9, 3.7025166748142776`*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -303,7 +329,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{759, 697},
-WindowMargins->{{62, Automatic}, {14, Automatic}},
+WindowMargins->{{62, Automatic}, {0, Automatic}},
 FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -319,12 +345,12 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 6981, 193, 582, "Input"],
-Cell[7564, 217, 854, 20, 46, "Output"]
+Cell[580, 22, 7047, 194, 582, "Input"],
+Cell[7630, 218, 1772, 45, 141, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8455, 242, 768, 24, 107, "Input"],
-Cell[9226, 268, 906, 33, 48, "Output"]
+Cell[9439, 268, 768, 24, 107, "Input"],
+Cell[10210, 294, 906, 33, 48, "Output"]
 }, Open  ]]
 }
 ]

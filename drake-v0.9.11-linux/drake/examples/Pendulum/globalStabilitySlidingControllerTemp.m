@@ -20,9 +20,8 @@ theta=msspoly('th',1);
 r=msspoly('r',1);
 xc=msspoly('xc',1);
 yc=msspoly('yc',1);
-de=msspoly('de',1);
-q=msspoly('q',1);
-vars = [x; y; xd; yd; c; s; theta; r; xc; yc; de];
+
+vars = [x; y; xd; yd; c; s; theta; r; xc; yc];
 
 % polynomial dynamics (using parameters from the plant class) in terms of
 % s,c, and thetadot
@@ -124,10 +123,8 @@ remNum(1)=remNum(1)*r.^5;
 remNum(2)=remNum(2)*r.^5;
 
 
-coeffMatInv=[(-yc+yr), (-xc+xr); (xc-xr), (-yc+yr)]*r;
-coeffMatInv(1,1)=-((mx *(x* xr* (y - yc) + (y - yc)^3 + xc *xr* (-y + yc) + x^2* (y - yr) + ...
-    xc^2 *(2* y - yc - yr) + x* xc* (-3* y + yc + 2* yr)))*r);
-coeffMatInv(1,1)=coeffMatInv(1,1)*de;
+coeffMatInv=[mx*s, mx*c; -my*c, my*s];
+
 % 
 % coeffMat(1,1)=(y - yc)* (-xc^2 + x* (xc - xr) + xc* xr + (y - yc)* (yc - yr))/mx*r.^3;
 % coeffMat(1,2)=(x - xc) *(-xc^2 + x* (xc - xr) + xc *xr + (y - yc)* (yc - yr))/my*r.^3;
@@ -143,20 +140,19 @@ U=coeffMatInv*(inv(Kd)*(-Ks*(Kp*epsilon+Kd*epsilond)-Kp*epsilond)-rem);
 Xdd=inv(M)*(U-C*[xd;yd]);
 xdd=Xdd(1);
 ydd=Xdd(2);
-thetad=(-xd*y+yd*x)*r;
+thetad=(-xd*y+yd*x);
 rd=(x*xd+y*yd)*r^3;
-ded=-(xd*(xc-xr)+yd*(yc-yr))*de^2;
 
-f = [xd;yd;xdd;ydd;-s*thetad;c*thetad;thetad;rd;0;0;0];
+f = [xd;yd;xdd;ydd;-s*thetad;c*thetad;thetad;rd;0;0];
 
 prog = spotsosprog;
 prog = prog.withIndeterminate(vars);
 
-deg_V = 4;
+deg_V = 2;
 [prog,V] = prog.newSOSPoly(monomials(vars,0:deg_V));
 Vdot = diff(V,vars)*f; 
 
-deg_lambda = 2;
+deg_lambda = 4;
 lambda_monom = monomials(vars,0:deg_lambda);
 [prog,lambda] = prog.newFreePoly(lambda_monom);
 

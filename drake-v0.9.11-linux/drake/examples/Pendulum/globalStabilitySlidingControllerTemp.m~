@@ -20,8 +20,8 @@ theta=msspoly('th',1);
 r=msspoly('r',1);
 xc=msspoly('xc',1);
 yc=msspoly('yc',1);
-
-vars = [x; y; xd; yd; c; s; theta; r; xc; yc];
+rr=msspoly('rr',1);
+vars = [x; y; xd; yd; c; s; theta; r; xc; yc; rr];
 
 % polynomial dynamics (using parameters from the plant class) in terms of
 % s,c, and thetadot
@@ -143,7 +143,7 @@ ydd=Xdd(2);
 thetad=(-xd*y+yd*x);
 rd=(x*xd+y*yd)*r^3;
 
-f = [xd;yd;xdd;ydd;-s*thetad;c*thetad;thetad;rd;0;0];
+f = [xd;yd;xdd;ydd;-s*thetad;c*thetad;thetad;rd;0;0; 0];
 
 prog = spotsosprog;
 prog = prog.withIndeterminate(vars);
@@ -208,8 +208,7 @@ Vdot = sol.eval(Vdot)
 
 % end
 
-%%%%%%%%%%%%%%%% Results
-%%%%%%%%%%%%%%%% %
+%%%%%%%%%%%%%%%% Results %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % % % % % 
 % % % % % % % Result:
 % % % % % % % 

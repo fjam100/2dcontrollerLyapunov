@@ -14,7 +14,9 @@ if (model.r+model.spRad)>norm(model.spPos-[x;y])
     theta=atan2(-model.spPos(2)+y,-model.spPos(1)+x);
     Fspindle=model.spK*((model.r+model.spRad)-norm(model.spPos-[x;y]))*...
         [cos(theta);sin(theta)];
-    Fnoise=rand(2,1)*0.5;
+%     if xd<0.0005
+%         Fnoise=-0.5*sign(xd);
+%     end
 end
 
 F=Fspindle+[ux;uy]+Fnoise;

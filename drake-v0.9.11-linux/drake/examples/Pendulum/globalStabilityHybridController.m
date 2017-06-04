@@ -106,7 +106,7 @@ f = [xd;yd;xdd;ydd;-s*thetad;c*thetad;thetad;rd;0;0;ded];
 prog = spotsosprog;
 prog = prog.withIndeterminate(vars);
 
-deg_V = 2;
+deg_V = 4;
 [prog,V] = prog.newSOSPoly(monomials(vars,0:deg_V));
 Vdot = diff(V,vars)*f; 
 

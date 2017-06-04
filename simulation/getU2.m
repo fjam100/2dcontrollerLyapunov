@@ -46,10 +46,10 @@ Tinvdd=[sin(theta) cos(theta); -cos(theta) sin(theta)]*thetad^2*0;
 
 cx=model.cx;
 cy=model.cy;
-mx=model.mx;
-my=model.my;
+mx=model.mx*15/2.5*4.5/8;
+my=model.mx*15/2.5*4.5/8;
 
-M=[model.mx 0; 0 model.my];
+M=[model.mx 0; 0 model.mx];
 C=[cx 0; 0 cy];
 Kp=[5 0; 0 5];
 Kd=[0.5 0; 0 0.5];

@@ -20,8 +20,8 @@ yrdd=Xr(6);
 dx=0;
 dy=0;
 
-xc=model.spPos(1)+0.001;
-yc=model.spPos(2)-0.001;
+xc=model.spPos(1);
+yc=model.spPos(2);
 r0=model.spRad+model.r;
 accY=(yd-Yprev(end))/Ts;
 k=0.7;

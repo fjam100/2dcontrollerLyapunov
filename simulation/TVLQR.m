@@ -49,6 +49,19 @@ for i=1:length(Xr(:,1))
     Xr2(i,2)=yc+model.spRad*sin(theta);
 end
 
+
+for i=1:length(Xr(:,1))
+    theta(i)=atan2(Xr(i,2)-yc,Xr(i,1)-xc);
+    Xr2(i,1)=xc+model.spRad*cos(theta(i));
+    Xr2(i,2)=yc+model.spRad*sin(theta(i));
+end
+
+for i=1:length(theta)
+    if theta(i)<0
+        theta(i)=2*pi+theta(i);
+    end
+end
+
 %% Get plots
 F=getForce(YwithLQR,model);
 figure();
@@ -62,7 +75,35 @@ hold on;
 
 plot(timeSamples,Y(:,2));
 figure()
-plot(F);
+plot(theta,F);
+title('Deburring force');
+set(gca,'Xtick',([0 pi/2 pi 3*pi/2 2*pi]));
+set(gca,'Xticklabels',({'0','\pi/2','\pi','3\pi/2','2\pi'}));
+grid on;
+hXLabel = xlabel('Angular Position (rad)');
+hYLabel = ylabel('Force (N)');
+set([hXLabel, hYLabel], 'fontSize', 10);
+set([gca], ...
+    'FontName','Times New Roman' );
+set([gca], ...
+    'FontSize', 10);
+%figure size
+set(gca, ...
+    'Units', 'centimeters');
+set(gca, ...
+    'OuterPosition', [0 0 15 10]);
+set(gcf, ...
+    'Units', 'centimeter');
+set(gcf, ...
+    'Position', [8 10 15 10]);
+set(gcf, ...
+    'PaperUnits','centimeters');
+set(gcf, ...
+    'PaperSize',[15 10]);
+set(gcf, ...
+    'PaperPosition',[0 0 15 10]);
+set(gcf, 'PaperPositionMode', 'auto');
+
 % figure();
 % plot(Ystab(:,1),Ystab(:,2),'o')
 % hold on;

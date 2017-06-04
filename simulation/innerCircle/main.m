@@ -25,7 +25,7 @@ xdd=0;
 ydd=0;
 %% Dynamic simulation
 for i=1:length(timeSamples)-1
-    U=getU2(state0,Xr(i+1,:),model,xdd,ydd);
+    U=getU(state0,Xr(i+1,:),model);
     [MCollated{i}, coeffmatCollated{i}, KdCollated{i},KsCollated{i}, SsdotCollated{i}, KeffCollated(i)]=getSSdot(state0,Xr(i+1,:),model);
     Ucollated(i,:)=U.';
     [Tt,Yt]=ode45(@(t,y)tableDynamics(t,y,timeSamples,Xr,model,U),[timeSamples(i),timeSamples(i+1)],state0);

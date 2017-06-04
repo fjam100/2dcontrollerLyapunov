@@ -25,12 +25,24 @@ theta=atan2(-model.spPos(2)+y,-model.spPos(1)+x);
 epsilonn =  dot(-[xc+r0*cos(theta);yc+r0*sin(theta)]+[x;y],[-cos(theta); -sin(theta)])+dot(-[xr;yr]+[x;y],[-cos(theta); -sin(theta)]);%+...
 %             dot([xc+r0*cos(theta);yc+r0*sin(theta)]-[x;y],[-cos(theta); -sin(theta)]);
 epsilont =  dot(-[xr;yr]+[x;y],[cos(theta+pi/2);sin(theta+pi/2)]);
+
+epsilond=[((x+(-1).*xc).^2+(y+(-1).*yc).^2).^(-3/2).*(xc.^2.*(xd.*y+(-1).*xrd.*y+ ...
+  (-1).*xd.*yc+xrd.*yc+(-1).*xr.*yd)+(-1).*(y+(-1).*yc).^2.*(xrd.*y+xd.* ...
+  yc+(-1).*xrd.*yc+(-1).*xd.*yr)+xc.^3.*(yd+(-1).*yrd)+x.^3.*yrd+x.^2.*( ...
+  xrd.*((-1).*y+yc)+xc.*yd+(-1).*xr.*yd+(-3).*xc.*yrd)+(-1).*xc.*(y+(-1).* ...
+  yc).*(xd.*xr+yc.*yd+(-1).*yd.*yr+y.*yrd+(-1).*yc.*yrd)+x.*(xc.*((-1).* ...
+  xd.*y+2.*xrd.*y+xd.*yc+(-2).*xrd.*yc+2.*xr.*yd)+xc.^2.*((-2).*yd+3.*yrd) ...
+  +(y+(-1).*yc).*(xd.*xr+yc.*yd+(-1).*yd.*yr+y.*yrd+(-1).*yc.*yrd))),((x+( ...
+  -1).*xc).^2+(y+(-1).*yc).^2).^(-1/2).*(x.*xd+(-1).*xc.*xd+(y+(-1).*yc).* ...
+  yd)].';
+
 % [xr;yr]
 % [x;y]
 T=[-sin(theta) -cos(theta); cos(theta) -sin(theta)];
 kt=1000;
-kn=10;
-
+kn=80;
+kdt=5;
+kdn=5;
 
 cx=model.cx;
 cy=model.cy;
@@ -43,7 +55,7 @@ Ksxx=1; Ksxy=0; Ksyx=0; Ksyy=1;
 
 % 
 % %% Using tangential and nomral force transformation
-res=T*[-kt 0; 0 -kn]*[epsilont;epsilonn];
+res=T*([-kt 0; 0 -kn]*[epsilont;epsilonn]+[kdt 0; 0 kdn]*epsilond);
 
 % 
 % %% Decomposed

@@ -28,7 +28,7 @@ epsilont =  dot(-[xr;yr]+[x;y],[cos(theta+pi/2);sin(theta+pi/2)]);
 % [xr;yr]
 % [x;y]
 T=[-sin(theta) -cos(theta); cos(theta) -sin(theta)];
-kt=1000;
+kt=100;
 kn=10;
 
 

@@ -70,23 +70,94 @@ for i=1:length(Xr(:,1))
     Xr2(i,2)=yc+model.spRad*sin(theta);
 end
 
+
+for i=1:length(Xr(:,1))
+    theta(i)=atan2(Xr(i,2)-yc,Xr(i,1)-xc);
+    Xr2(i,1)=xc+model.spRad*cos(theta(i));
+    Xr2(i,2)=yc+model.spRad*sin(theta(i));
+end
+
+for i=1:length(theta)
+    if theta(i)<0
+        theta(i)=2*pi+theta(i);
+    end
+end
+
 %% Get plots
 F=getForce(Y,model);
 figure();
-plot(T,Y(:,1));
-hold on;
-plot(timeSamples,Xr(:,1));
+% plot(theta,Y(:,1));
+% hold on;
+plot(theta,(Y(:,1)-Xr(:,1))*1000);
+title('Tracking Error in X');
+grid on;
+set(gca,'Xtick',([0 pi/2 pi 3*pi/2 2*pi]));
+set(gca,'Xticklabels',({'0','\pi/2','\pi','3\pi/2','2\pi'}));
+hXLabel = xlabel('Angular Position (rad)');
+hYLabel = ylabel('Error (mm)');
+set([hXLabel, hYLabel], 'fontSize', 10);
+set([gca], ...
+    'FontName','Times New Roman' );
+set([gca], ...
+    'FontSize', 10);
+%figure size
+set(gca, ...
+    'Units', 'centimeters');
+set(gca, ...
+    'OuterPosition', [0 0 15 10]);
+set(gcf, ...
+    'Units', 'centimeter');
+set(gcf, ...
+    'Position', [8 10 15 10]);
+set(gcf, ...
+    'PaperUnits','centimeters');
+set(gcf, ...
+    'PaperSize',[15 10]);
+set(gcf, ...
+    'PaperPosition',[0 0 15 10]);
+set(gcf, 'PaperPositionMode', 'auto');
+
+
 figure();
 hold on;
-plot(T,Y(:,2));
-hold on;
-
-plot(timeSamples,Xr(:,2));
-figure()
-plot(timeSamples,F);
-title('Deburring force');
+plot(theta,(Y(:,2)-Xr(:,2))*1000);
+title('Tracking Error in Y');
+set(gca,'Xtick',([0 pi/2 pi 3*pi/2 2*pi]));
+set(gca,'Xticklabels',({'0','\pi/2','\pi','3\pi/2','2\pi'}));
 grid on;
-hXLabel = xlabel('Time (s)');
+hXLabel = xlabel('Angular Position (rad)');
+hYLabel = ylabel('Error (mm)');
+set([hXLabel, hYLabel], 'fontSize', 10);
+set([gca], ...
+    'FontName','Times New Roman' );
+set([gca], ...
+    'FontSize', 10);
+%figure size
+set(gca, ...
+    'Units', 'centimeters');
+set(gca, ...
+    'OuterPosition', [0 0 15 10]);
+set(gcf, ...
+    'Units', 'centimeter');
+set(gcf, ...
+    'Position', [8 10 15 10]);
+set(gcf, ...
+    'PaperUnits','centimeters');
+set(gcf, ...
+    'PaperSize',[15 10]);
+set(gcf, ...
+    'PaperPosition',[0 0 15 10]);
+set(gcf, 'PaperPositionMode', 'auto');
+
+
+% plot(theta,Xr(:,2));
+figure()
+plot(theta,F);
+title('Deburring force');
+set(gca,'Xtick',([0 pi/2 pi 3*pi/2 2*pi]));
+set(gca,'Xticklabels',({'0','\pi/2','\pi','3\pi/2','2\pi'}));
+grid on;
+hXLabel = xlabel('Angular Position (rad)');
 hYLabel = ylabel('Force (N)');
 set([hXLabel, hYLabel], 'fontSize', 10);
 set([gca], ...
@@ -109,7 +180,7 @@ set(gcf, ...
 set(gcf, ...
     'PaperPosition',[0 0 15 10]);
 set(gcf, 'PaperPositionMode', 'auto');
-% print -depsc2 -painters forcePlot.eps
+
 
 figure();
 plot(Y(:,1),Y(:,2),'o')
@@ -185,7 +256,7 @@ figure()
 plot(timeSamples,epsilonn);
 title('Normal Error');
 grid on;
-ylim([-0.1,0]);
+ylim([-0.001,0.001]);
 hXLabel = xlabel('Time (s)');
 hYLabel = ylabel('Error (m)');
 set([hXLabel, hYLabel], 'fontSize', 10);
@@ -211,3 +282,31 @@ set(gcf, ...
 set(gcf, 'PaperPositionMode', 'auto');
 % print -depsc2 -painters normalError.eps
 
+figure();
+plot(T,Y(:,1)-Xr(:,1));
+title('Tracking Error in X-Axis');
+grid on;
+ylim([-0.1,0]);
+hXLabel = xlabel('Time (s)');
+hYLabel = ylabel('Error (m)');
+set([hXLabel, hYLabel], 'fontSize', 10);
+set([gca], ...
+    'FontName','Times New Roman' );
+set([gca], ...
+    'FontSize', 10);
+%figure size
+set(gca, ...
+    'Units', 'centimeters');
+set(gca, ...
+    'OuterPosition', [0 0 15 10]);
+set(gcf, ...
+    'Units', 'centimeter');
+set(gcf, ...
+    'Position', [8 10 15 10]);
+set(gcf, ...
+    'PaperUnits','centimeters');
+set(gcf, ...
+    'PaperSize',[15 10]);
+set(gcf, ...
+    'PaperPosition',[0 0 15 10]);
+set(gcf, 'PaperPositionMode', 'auto');

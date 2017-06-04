@@ -16,8 +16,16 @@ axis('equal');
 cSpindle.plotCircle(fig,axs);
 cMass=circleMass(y(1,1:2),model.r);
 cMass.plotCircle(fig,axs);
+
+v=VideoWriter('video1.avi');
+v.FrameRate=30;
+open(v);
 for i=1:100:m
     cMass.updateState(y(i,1:2));
     cSpindle.updateState(cSpindle.centre);
+    frame=getframe(gcf);
+    writeVideo(v,frame);
     pause(0.1);
 end
+
+close(v);

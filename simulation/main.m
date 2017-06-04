@@ -40,6 +40,7 @@ kalman.X=[state0.'; 0; 0];
 %% Dynamic simulation
 for i=1:length(timeSamples)-1
     [U, Knormal(i), epsilonn(i), epsilont(i)]=getU2(state0,Xr(i+1,:),model);
+%     U=getU(state0,Xr(i+1,:),model);
     theta=atan2(-model.spPos(2)+Y(end,2),-model.spPos(1)+Y(end,1));
     % Kalman model update
     kalman.X=kalman.Ad*kalman.X+kalman.Bd*(U);
@@ -62,28 +63,92 @@ end
 % animateTable(Y,model);
 
 for i=1:length(Xr(:,1))
-    theta=atan2(Xr(i,2)-yc,Xr(i,1)-xc);
-    Xr2(i,1)=xc+model.spRad*cos(theta);
-    Xr2(i,2)=yc+model.spRad*sin(theta);
+    theta(i)=atan2(Xr(i,2)-yc,Xr(i,1)-xc);
+    Xr2(i,1)=xc+model.spRad*cos(theta(i));
+    Xr2(i,2)=yc+model.spRad*sin(theta(i));
 end
 
+for i=1:length(theta)
+    if theta(i)<0
+        theta(i)=2*pi+theta(i);
+    end
+end
+        
 %% Get plots
 F=getForce(Y,model);
 figure();
-plot(T,Y(:,1));
-hold on;
-plot(timeSamples,Xr(:,1));
+% plot(theta,Y(:,1));
+% hold on;
+plot(theta,(Y(:,1)-Xr(:,1))*1000);
+title('Tracking Error in X');
+grid on;
+set(gca,'Xtick',([0 pi/2 pi 3*pi/2 2*pi]));
+set(gca,'Xticklabels',({'0','\pi/2','\pi','3\pi/2','2\pi'}));
+hXLabel = xlabel('Angular Position (rad)');
+hYLabel = ylabel('Error (mm)');
+set([hXLabel, hYLabel], 'fontSize', 10);
+set([gca], ...
+    'FontName','Times New Roman' );
+set([gca], ...
+    'FontSize', 10);
+%figure size
+set(gca, ...
+    'Units', 'centimeters');
+set(gca, ...
+    'OuterPosition', [0 0 15 10]);
+set(gcf, ...
+    'Units', 'centimeter');
+set(gcf, ...
+    'Position', [8 10 15 10]);
+set(gcf, ...
+    'PaperUnits','centimeters');
+set(gcf, ...
+    'PaperSize',[15 10]);
+set(gcf, ...
+    'PaperPosition',[0 0 15 10]);
+set(gcf, 'PaperPositionMode', 'auto');
+
+
 figure();
 hold on;
-plot(T,Y(:,2));
-hold on;
-
-plot(timeSamples,Xr(:,2));
-figure()
-plot(timeSamples,F);
-title('Deburring force');
+plot(theta,(Y(:,2)-Xr(:,2))*1000);
+title('Tracking Error in Y');
+set(gca,'Xtick',([0 pi/2 pi 3*pi/2 2*pi]));
+set(gca,'Xticklabels',({'0','\pi/2','\pi','3\pi/2','2\pi'}));
 grid on;
-hXLabel = xlabel('Time (s)');
+hXLabel = xlabel('Angular Position (rad)');
+hYLabel = ylabel('Error (mm)');
+set([hXLabel, hYLabel], 'fontSize', 10);
+set([gca], ...
+    'FontName','Times New Roman' );
+set([gca], ...
+    'FontSize', 10);
+%figure size
+set(gca, ...
+    'Units', 'centimeters');
+set(gca, ...
+    'OuterPosition', [0 0 15 10]);
+set(gcf, ...
+    'Units', 'centimeter');
+set(gcf, ...
+    'Position', [8 10 15 10]);
+set(gcf, ...
+    'PaperUnits','centimeters');
+set(gcf, ...
+    'PaperSize',[15 10]);
+set(gcf, ...
+    'PaperPosition',[0 0 15 10]);
+set(gcf, 'PaperPositionMode', 'auto');
+
+
+% plot(theta,Xr(:,2));
+figure()
+plot(theta,F);
+title('Deburring force');
+set(gca,'Xtick',([0 pi/2 pi 3*pi/2 2*pi]));
+set(gca,'Xticklabels',({'0','\pi/2','\pi','3\pi/2','2\pi'}));
+grid on;
+hXLabel = xlabel('Angular Position (rad)');
 hYLabel = ylabel('Force (N)');
 set([hXLabel, hYLabel], 'fontSize', 10);
 set([gca], ...
@@ -145,13 +210,15 @@ end
 %    temp=MCollated{i}*inv(coeffmatCollated{i})*inv(KdCollated{i})*KsCollated{i}*[0;1];
 %    Keffective(i)=temp(2);
 % end
-Knormal=[Knormal, Knormal(end)];
+Knormal=[Knormal];
 figure()
-plot(timeSamples,Knormal);
+plot(theta,Knormal);
+set(gca,'Xtick',([0 pi/2 pi 3*pi/2 2*pi]));
+set(gca,'Xticklabels',({'0','\pi/2','\pi','3\pi/2','2\pi'}));
 title('Effective Stiffness');
 grid on;
 ylim([-22,0]);
-hXLabel = xlabel('Time (s)');
+hXLabel = xlabel('Angular Position (rad)');
 hYLabel = ylabel('Stiffness (N/m)');
 set([hXLabel, hYLabel], 'fontSize', 10);
 set([gca], ...
@@ -177,13 +244,15 @@ set(gcf, 'PaperPositionMode', 'auto');
 print -depsc2 -painters effectiveStiffness.eps
 
 %% Display epsilon errors
-epsilonn=[epsilonn, epsilonn(end)];
+epsilonn=[epsilonn];
 figure()
-plot(timeSamples,epsilonn);
+plot(theta,epsilonn(1:length(theta)));
+set(gca,'Xtick',([0 pi/2 pi 3*pi/2 2*pi]));
+set(gca,'Xticklabels',({'0','\pi/2','\pi','3\pi/2','2\pi'}));
 title('Normal Error');
 grid on;
 ylim([-0.1,0]);
-hXLabel = xlabel('Time (s)');
+hXLabel = xlabel('Angular Position (rad)');
 hYLabel = ylabel('Error (m)');
 set([hXLabel, hYLabel], 'fontSize', 10);
 set([gca], ...
